@@ -1,70 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
-     <%
-    	java.util.Scanner sc = new java.util.Scanner(System.in);
-   		System.out.println("단 입력:");
-   		int dan = sc.nextInt();
-   		int mul = 0;
-   		for(int i=1; i<=dan; i++){
-   			
-   			mul = i*dan;
-   			
-   			System.out.printf("%d x %d = %d\n", dan,i,mul);
-   		}
-   		
-    %>
-    
-    
-    
-    
+
+<%
+    // 콘솔창에서 사용자에게 행과 열을 입력받음
+    java.util.Scanner sc = new java.util.Scanner(System.in);
+    System.out.print("단 입력: ");
+    int dan = sc.nextInt();
+
+    // 구구단 결과를 2차원 배열로 저장
+    String[][] tableData = new String[9][1]; // 9행 1열
+
+    for (int i = 0; i < 9; i++) {
+        int result = dan * (i + 1);
+        tableData[i][0] = dan + " x " + (i + 1) + " = " + result;
+    }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>구구단 테이블 출력</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-<!--  
-단수 입력받아 해당 구구단을 찍어보세요(Table로 만드세요 - 스크립틀릿)
--->
+<h2><%= dan %>단 출력 결과</h2>
 
 <table>
-		<tbody>
-			<%
-				//tr태그 생성 반복
-				for(int i=0;i<dan;i++)
-				{
-				%>
-					<tr>
-						<%
-						for(int j=0;j<col;j++){
-						%>
-							
-								<td><%=i+":"+j %><td/>
-								
-							
-						<% 
-							
-						}
-						
-						%>
-						
-					<tr/>
-					<% 
-				}
-			
-			%>
-		
-		
-		</tbody>
-	
-	
-	
-	</table>
-
+    <tbody>
+    <%
+        for (int i = 0; i < 9; i++) {
+    %>
+        <tr>
+            <td><%= tableData[i][0] %></td>
+        </tr>
+    <%
+        }
+    %>
+    </tbody>
+</table>
 
 </body>
 </html>

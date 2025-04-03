@@ -30,6 +30,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="./getCookie,.jsp">쿠키확인하기</a>
+	<a href="./getCookie.jsp">쿠키확인하기</a>
 </body>
 </html>

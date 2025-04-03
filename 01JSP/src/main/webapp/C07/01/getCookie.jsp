@@ -16,8 +16,11 @@
 			System.out.println("cookie : " + cookie.getName()+":"+cookie.getValue());
 			%>
 				<div>
-				<%=cookie.getName() %> : <%=cookie.getValue() %> <br/>
+					<a href="./deleteCookie.jsp?cookieName=<%=cookie.getName()%>">
+						<%=cookie.getName() %> : <%=cookie.getValue() %> 
+					</a>
 				</div>
+				
 			<%
 			
 		}
@@ -27,6 +30,8 @@
 
 %>
 <hr/>
-<h1>쿠키 확인(EL)</h1>
+<%-- <h1>쿠키 확인(값만확인:EL)</h1>
+COOKIE1's Value: ${cookie.myCookie1.value }<br/>
+COOKIE2's Value: ${cookie.myCookie2.value }<br/> --%>
 </body>
 </html>

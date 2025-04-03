@@ -13,11 +13,14 @@
      
      
      <%
+     	
      	Cookie cookie1 = new Cookie("myCookie1", "myCookie1Value");
-     	cookie1.setMaxAge(30); //쿠키 유지 시간(-1:기본값 : 파일생성 x, 브라우저가 종료될 때까지 쿠키 저장)
+     cookie1.setPath("/");	
+     cookie1.setMaxAge(30); //쿠키 유지 시간(-1:기본값 : 파일생성 x, 브라우저가 종료될 때까지 쿠키 저장)
      							//30초 설정
      	Cookie cookie2 = new Cookie("myCookie2", "myCookie2Value");
-     	cookie2.setMaxAge(60*5); //5분 설정
+     	cookie2.setPath("/");	
+     cookie2.setMaxAge(60*5); //5분 설정
      	
      	response.addCookie(cookie1);
      	response.addCookie(cookie2);

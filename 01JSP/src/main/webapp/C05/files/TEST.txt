@@ -1,0 +1,51 @@
+------------------------------------------------------
+usermod : 사용자 계정정보 변경 명령어
+------------------------------------------------------
+
+-------------------------------------
+[옵션]
+-------------------------------------
+-d 홈디렉토리 설정 	
+-m 홈디렉토리 이동
+
+-------------------------------------
+[실습]
+-------------------------------------
+usermod -u 2000 mod  	-u uid 변경
+usermod -g heath mod	-g 주그룹 변경
+usermod -G test1 mod	-G 보조그룹 변경
+usermod -c linux mod	-c 계정 설정변경
+usermod -s /bin/sh mod	-s 쉘변경
+
+mkdir -p /export/home
+usermod -md /export/home/mod mod
+ 
+
+------------------------------------------------------
+미니 문제(스냅샷 돌리고 문제푸세요)
+------------------------------------------------------
+useradd test1,test2,test3
+
+1. test1,test2,test3 계정 생성
+
+2. test1 의 comment 를 modtest로 변경
+usermod -c modtest test1
+3. test2 의 주그룹을 test1로, test2의 보조그룹을 test3으로 지정
+usermod -g test1 -G test2 test3
+4. test1 의 shell을 /bin/ksh 로변경
+usermod -s /bin/ksh test1
+5. test1의 홈디렉토리를 /test1/home 경로로, test2 홈디렉토리를 /test2/home으로 이동
+mkdir /test1 /test2
+usermod -md /test1/home test1
+usermod -md /tetst2/home test2
+
+
+
+
+
+
+
+
+
+
+

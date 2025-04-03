@@ -37,14 +37,8 @@
 		</header>
 		<main>
 			<section>
-				<!--  
-						form태그로 
-						userid
-						password
-						join.jsp 로 회원가입 요청 처리			
-				-->
 				<h1>LOGIN</h1>
-				<form action="Login.jsp" method="post">
+				<form action="login.jsp" method="post">
 					<input type="text" name="userid" /><br> 
 					<input type="text"name="password" /><br> 
 					<input type="submit" value="로그인" />

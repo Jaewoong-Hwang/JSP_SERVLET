@@ -43,7 +43,7 @@
 						password
 						join.jsp 로 회원가입 요청 처리			
 				-->
-				<h1>JOIN</h1>
+				<h1>JOIN </h1>
 				<form action="join.jsp" method="post">
 					<input type="text" name="userid" /><br> 
 					<input type="text"name="password" /><br> 

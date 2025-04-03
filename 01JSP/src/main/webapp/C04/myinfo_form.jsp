@@ -37,21 +37,19 @@
 		</header>
 		<main>
 			<section>
+
 				<!--  
-					
-					1.myinfo.jsp(생성)
-						- url: "/myinfo" 룰 request.setAttrubute로 저장 후 forwarding 
+					1. myinfo.jsp(생성)
 						
-					2.validationCheck.jsp
-						- 유효성 체크	
-					3.dbUtils.jsp(기존)
-						- select 작업 forwarding
-					4.myinfo.jsp(내용표시)
+					2. vaildationCheck.jsp
+						- 유효성 체크
+					3. dbUils.jsp(기존) 
+						- select 작업 조회이후 forwarding
+					4. myinfoResult.jsp(내용표시)				
 						- 
-						
 				-->
-				<h1>MYINFO</h1>
-				<form action="join.jsp" method="post">
+				<h1>MYINFO </h1>
+				<form action="myinfo.jsp" method="post">
 					<input type="text" name="userid" /><br>
 					<input type="submit" value="조회" />
 				</form>

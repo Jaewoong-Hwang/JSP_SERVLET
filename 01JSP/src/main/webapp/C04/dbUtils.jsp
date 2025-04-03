@@ -21,11 +21,10 @@
 
 	private int insert(UserDto userDto) throws Exception {
 
-		pstmt = conn.prepareStatement("insert into TBL_USER values(?,?,?) ");
+		pstmt = conn.prepareStatement("insert into TBL_USER values(?,?,?)");
 		pstmt.setString(1, userDto.getUserid());
 		pstmt.setString(2, userDto.getPassword());
 		pstmt.setString(3, userDto.getRole());
-
 		int result = pstmt.executeUpdate();
 
 		conn.commit();
@@ -34,25 +33,59 @@
 
 		return result;
 
-	}%>
+	}
+	
+	private UserDto selectOne(String userid) throws Exception{
+		pstmt = conn.prepareStatement("select * from TBL_USER where userid='"+userid+"'");
+		rs =  pstmt.executeQuery();
+		UserDto userDto=null;
+		if(rs!=null){
+			if(rs.next()){
+				userDto = new UserDto();
+				userDto.setUserid(userid);
+				userDto.setPassword(rs.getString("password"));
+				userDto.setRole(rs.getString("role"));			
+			}
+		}
+		rs.close();
+		pstmt.close();
+		return userDto;
+	}
+	
+	%>
 
 <!-- Service 함수 -->
 <%
-/*  요청 정보 확인*/
-String url = (String) request.getAttribute("url"); //
-Integer serviceNo = (Integer) request.getAttribute("serviceNo");
-System.out.println("URL:" + url);
-System.out.println("SERVICENO" + serviceNo);
-
-getConnection();
-if (url.contains("/join")) {
-	UserDto userDto = (UserDto) request.getAttribute("userDto");
+	/* 요청 정보확인 */
+	String url = (String) request.getAttribute("url"); //
+	Integer serviceNo = (Integer) request.getAttribute("serviceNo");
+	System.out.println("URL : " + url);
+	System.out.println("SERVICENO : " + serviceNo);
 	
+	if (url.contains("/join")) {
+		getConnection();
 	
+		UserDto userDto = (UserDto) request.getAttribute("userDto");
 	
-	if(insert(userDto)>0){
-		response.sendRedirect("login_form.jsp"); //redirect 다수 이용시 return 예약어 사용
-		return;
+		if (insert(userDto) > 0) {
+			response.sendRedirect("login_form.jsp"); //redirect 다수 사용시 return 예약어 사용
+			return;
+		}
+	
 	}
-}
+	if (url.contains("/myinfo")) {
+		request.setAttribute("isConfirm",true);
+		
+		getConnection();
+		String userid = request.getParameter("userid");
+		UserDto userDto = selectOne(userid);
+		request.setAttribute("myinfo-result", userDto);	
+		request.getRequestDispatcher("./myinfo.jsp").forward(request,response); //forwarding 처리 - !
+		return ;
+		
+	
+	}
 %>
+
+
+

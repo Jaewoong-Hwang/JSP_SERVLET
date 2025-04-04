@@ -35,24 +35,22 @@ span {
 	<form action="${pageContext.request.contextPath}/C07/03/login.jsp"
 		method="post">
 		<div>
-			<label>아이디 :</label><span>${username_msg}</span> <br /> <input
-				type="text" name="username" value=${cookie.username!=null?cookie.username.value:""}/>
+			<label>아이디 :</label>
+			<span>${username_msg}</span> <br /> 
+			<input type="text" name="username" value="${cookie.username!=null? cookie.username.value:''}"/>
 		</div>
 		<div>
-			<label>패스워드 :</label><span>${password_msg}</span> <br /> <input
-				type="password" name="password" />
+			<label>패스워드 :</label>
+			<span>${password_msg}</span> <br /> 
+			<input type="password" name="password"  value="${cookie.password!=null? cookie.password.value:'' }"/>
 		</div>
 		<div>
-			<input type="checkbox" id="idSave" name="idSave" /> 
+			<input type="checkbox" id="idSave" name="idSave" ${cookie.idchk != null? 'checked' : ''} /> 
 			<label for="idSave">ID저장</label>
-
-		</div>
-		<div>
-			<input type="checkbox" id="pwSave" name="pwSave"/> 
+			<input type="checkbox" id="pwSave" name="pwSave" ${cookie.pwchk !=null? 'checked' : '' }/> 
 			<label for="pwSave">PW저장</label>
 
 		</div>
-
 
 		<div>
 			<button>로그인</button>

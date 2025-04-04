@@ -43,8 +43,9 @@
 	<!--EL:PARAM -->
 	USERNAME : ${param.username}<br/>		<!--  param의 경우에는 reuquestScope에서 가져옴-->
 	PASSWORD : ${param.password}<br/>
-	
 	<hr/>
+	
+	
 	<!-- EL : ATTRIBUTE  -->
 	PAGECONTEXT's ATTR : ${P_ATTR}<br/>
 	PAGECONTEXT's ATTR : ${pageScope.P_ATTR}<br/>

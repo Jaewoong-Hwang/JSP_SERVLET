@@ -52,19 +52,19 @@ if (idSave != null) {
 	response.addCookie(cookie);
 
 	Cookie idchk = new Cookie("idchk", "on");
-	cookie.setMaxAge(60 * 5);
-	cookie.setPath("/01JSP/C07/03/login_form.jsp");
+	idchk.setMaxAge(60 * 5);
+	idchk.setPath("/01JSP/C07/03/login_form.jsp");
 	response.addCookie(idchk);
 
 	//PASSWORD
 	Cookie cookie2 = new Cookie("password", password);
-	cookie.setMaxAge(60 * 5);
-	cookie.setPath("/01JSP/C07/03/login_form.jsp");
+	cookie2.setMaxAge(60 * 5);
+	cookie2.setPath("/01JSP/C07/03/login_form.jsp");
 	response.addCookie(cookie2);
 
 	Cookie pwchk = new Cookie("pwchk", "on");
-	cookie.setMaxAge(60 * 5);
-	cookie.setPath("/01JSP/C07/03/login_form.jsp");
+	pwchk.setMaxAge(60 * 5);
+	pwchk.setPath("/01JSP/C07/03/login_form.jsp");
 	response.addCookie(pwchk);
 } else {
 	Cookie cookie = new Cookie("username", null);
@@ -73,19 +73,19 @@ if (idSave != null) {
 	response.addCookie(cookie);
 
 	Cookie idchk = new Cookie("idchk", null);
-	cookie.setMaxAge(0);
-	cookie.setPath("/01JSP/C07/03/login_form.jsp");
+	idchk.setMaxAge(0);
+	idchk.setPath("/01JSP/C07/03/login_form.jsp");
 	response.addCookie(idchk);
 
 	//PASSWORD
 	Cookie cookie2 = new Cookie("password", null);
-	cookie.setMaxAge(0);
-	cookie.setPath("/01JSP/C07/03/login_form.jsp");
+	cookie2.setMaxAge(0);
+	cookie2.setPath("/01JSP/C07/03/login_form.jsp");
 	response.addCookie(cookie2);
 
 	Cookie pwchk = new Cookie("pwchk", null);
-	cookie.setMaxAge(0);
-	cookie.setPath("/01JSP/C07/03/login_form.jsp");
+	pwchk.setMaxAge(0);
+	pwchk.setPath("/01JSP/C07/03/login_form.jsp");
 	response.addCookie(pwchk);
 }
 

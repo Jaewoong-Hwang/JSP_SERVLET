@@ -46,13 +46,27 @@ List<UserDto> list = dbUtils.selectAllUser();
 			<td><%=dto.getUserid()%></td>
 			<td><%=dto.getPassword()%></td>
 			<td><%=dto.getRole()%></td>
-			<td><a href="./update_form.jsp?userid=<%=dto.getUserid()%>">수정하기</a></td>
-			<td><a href="./delete.jsp?userid=<%=dto.getUserid()%>">삭제하기</a></td>
+			<td><a href="./update_form.jsp?userid=<%=dto.getUserid()%>">수정하기</a></td>	
+			<td>
+			<a href="javascript:deleteFunc('<%=dto.getUserid()%>')"></a>
+			<button onClick ="deleteFunc('<%=dto.getUserid()%>')">삭제하기</button>
+			</td>
 		</tr>
 
 		<%
 		}
 		%>
+
+
+	<script>
+		function deleteFunc(userid){
+		const isDelete = confirm("정말 삭제하시겠습니까?");
+		if(isDelete)
+			location.href=`./delete.jsp?userid=`+userid;
+			
+		}
+		
+	</script>
 
 
 

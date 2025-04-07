@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="C09.*,C09.DBUtils,java.util.*,java.time.format.DateTimeFormatter"%>
     
+    <%
+    List<OrderDto3> list = DBUtils.getInstance().selectAllOrder3();
+    %>
 <!--  
 	INNER JOIN
 	
@@ -33,13 +37,20 @@
 				<th>날짜</th>
 				<th>총액</th>
 			</tr>
-			
+			<%
+			for(OrderDto3 dto : list){
+				
+				//yyyy.MM.dd
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+			%>
 			<tr>
-				<td>대구</td>
-				<td>2025-01-01</td>
-				<td>10000</td>
+				<td><%=dto.getADDR() %></td>
+				<td><%=dto.getORDER_DATE().format(formatter) %></td>
+				<td><%=dto.getSUM() %></td>
 			</tr>
-		
+			<%
+			} 
+			%>		
 		</table>
 
 

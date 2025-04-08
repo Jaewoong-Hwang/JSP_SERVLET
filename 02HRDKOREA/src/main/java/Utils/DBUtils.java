@@ -66,7 +66,22 @@ public class DBUtils {
 		return list;
 	}
 
-	
+	public int insertVote(VoteDto dto) throws Exception{
+		pstmt = conn.prepareStatement("insert into TBL_VOTE_202005 values(?,?,?,?,?,?)");
+		pstmt.setString(1, dto.getV_jumin());
+		pstmt.setString(2, dto.getV_name());
+		pstmt.setString(3, dto.getM_no());
+		pstmt.setString(4, dto.getV_time());
+		pstmt.setString(5, dto.getV_area());
+		pstmt.setString(6, dto.getV_confirm());
+		
+		int result = pstmt.executeUpdate();
+		
+		conn.commit();
+		
+		pstmt.close();
+		return result;
+	}
 	
 	
 }

@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +49,6 @@ a {
 
 .wrapper>main {
 	height: calc(100vh - 80px - 50px - 80px);
-	overflow:auto;
 }
 
 .wrapper>main h2 {
@@ -96,23 +92,17 @@ a {
 
 		<!--  -->
 		<%@include file="/layouts/Nav.jsp"%>
-
-		<%@page import="Utils.*,java.util.*"%>
-		<%@page import= "java.time.Period,java.time.LocalDate,java.time.format.DateTimeFormatter" %>
-
-		<%
-		List<VoteDto> list = DBUtils.getInstance().selectAllVote();
-
-		%>
-
-
-
+ 
+  
+    <!-- 파라미터 받기(액션태그) -:userBean -->
+    <jsp:useBean id="voteDto2" class="Utils.VoteDto" scope="request"/>
+    <jsp:setProperty name="voteDto2" property="*"/>
+    
+ 
 		<main>
-		
 			<h2>투표검수조회</h2>
 			<table>
 				<tr>
-				
 					<th>성명</th>
 					<th>생년월일</th>
 					<th>나이</th>
@@ -120,57 +110,56 @@ a {
 					<th>후보번호</th>
 					<th>투표시간</th>
 					<th>유권자확인</th>
-				
 				</tr>
-				<%
-				for(VoteDto voteDto:list){
-				
-				%>
+				<%@page import= "java.time.Period,java.time.LocalDate,java.time.format.DateTimeFormatter" %>
 				<tr>
 				
-					<td><%=voteDto.getV_name() %></td>
+					<td><%=voteDto2.getV_name() %></td>
+					<td><%=voteDto2.getV_jumin() %></td>
+					
 					<%
 					
-					// 
-						String birthYear = voteDto.getV_jumin().substring(0,6);
-						System.out.println("birthYear : "+ birthYear);
+						String age = voteDto2.getV_jumin().substring(0, 6); //19 + 960109 | 
+						System.out.println("age :" + age);
+						age="19" + age;
 						
-						int yy = Integer.parseInt(birthYear.substring(0,2));
-						int now = LocalDate.now().getYear()%100;
-						if(yy>0 && yy<=now) //01년생 - 24년생
-							birthYear= "20"+birthYear; 
-						else
-							birthYear= "19"+birthYear;
-							
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");						
+						LocalDate date = LocalDate.parse(age,formatter);
+						System.out.println("date : " + date);
 						
-						//입력 포맷(yyMMdd)
-						DateTimeFormatter infmt = DateTimeFormatter.ofPattern("yyyyMMdd");
-						LocalDate myBirth = LocalDate.parse(birthYear,infmt);
-						//출력 포맷(yyyy년MM월dd일생)
-						DateTimeFormatter outfmt = DateTimeFormatter.ofPattern("yyyy년MM월dd일생");
-						out.println("<td>"+myBirth.format(outfmt)+"</td>");
+						//현재 날짜
+						LocalDate today = LocalDate.now();
+						
+						//만 나이 계산
+						int manAge =Period.between(date,today).getYears();
+						out.println("<td>"+manAge+"세</td>");
 					%>
 					
-					<%-- <td><%=voteDto.getV_jumin() %></td> --%>
-					<td><%=voteDto.getV_jumin() %></td>
-					<td><%=voteDto.getV_jumin() %></td>
-					<td><%=voteDto.getM_no() %></td>
-					<td><%=voteDto.getV_time() %></td>
-					<td><%=voteDto.getV_confirm() %></td>
-
+					
+					<%-- <td><%=voteDto2.getV_jumin() %></td> --%>
+					<%
+					
+						char gender=voteDto2.getV_jumin().charAt(6);
+						if(gender%2==0)	
+							out.print("<td>여자</td>");
+						else
+							out.print("<td>남자</td>");
+					%>
+					<%-- <td><%=voteDto2.getV_jumin() %></td> --%>
+									
+					<td><%=voteDto2.getM_no() %></td>
+					<td><%=voteDto2.getV_time() %></td>
+					<td><%=voteDto2.getV_confirm() %></td>
 				</tr>
-				<%
-				} 
-				%>
+				
 			</table>
-		
 		</main>
 
 		<!--  -->
 		<%@include file="/layouts/Footer.jsp"%>
 
 	</div>
-
+	
 
 </body>
 </html>

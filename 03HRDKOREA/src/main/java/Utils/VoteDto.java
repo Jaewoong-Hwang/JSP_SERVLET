@@ -2,7 +2,7 @@ package Utils;
 
 
 
-public class VoteDto2 {
+public class VoteDto {
 	
 		private String v_jumin;
 		private String v_name;
@@ -12,10 +12,10 @@ public class VoteDto2 {
 		private String v_confirm;
 		
 
-		public VoteDto2() {}
+		public VoteDto() {}
 
 
-		public VoteDto2(String v_jumin, String v_name, String m_no, String v_time, String v_area, String v_confirm) {
+		public VoteDto(String v_jumin, String v_name, String m_no, String v_time, String v_area, String v_confirm) {
 			super();
 			this.v_jumin = v_jumin;
 			this.v_name = v_name;

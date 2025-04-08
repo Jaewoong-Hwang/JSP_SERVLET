@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +68,7 @@ a {
 
 .wrapper>main table th, .wrapper>main table td {
 	min-width: 80px !important;
-	min-height: 35px !important;
+	min-height: 25px !important;
 	border: 1px solid;
 	text-align: center;
 }
@@ -82,50 +82,24 @@ a {
 }
 </style>
 
+
 </head>
 <body>
-
+	
 	<div class="wrapper">
 		<!--  -->
-		<%@include file="/layouts/Header.jsp"%>
-
+		<%@include file="/layouts/Header.jsp" %>
+		
 		<!--  -->
-		<%@include file="/layouts/Nav.jsp"%>
-		<%@page import="Utils.*,java.util.*"%>
-		<%
-			List<SubVoteDto> list = DBUtils.getInstance().selectAllVote2();
-		%>
-
-
+		<%@include file="/layouts/Nav.jsp" %>
+		
 		<main>
-			<h2>후보자등수</h2>
-			<table>
-				<tr>
-					<th>후보번호</th>
-					<th>성명</th>
-					<th>총투표건수</th>
-				</tr>
-				<%
-				for(SubVoteDto dto : list){
-				%>
-				<tr>
-				
-					<td><%=dto.getM_no() %></td>
-					<td><%=dto.getM_name() %></td>
-					<td><%=dto.getCount() %></td>
-					
-				
-				</tr>
-				<%
-				} 
-				%>
-			</table>
-			
+		<h2>강사매출현황</h2>
 		</main>
-
+		
 		<!--  -->
-		<%@include file="/layouts/Footer.jsp"%>
-
+		<%@include file="/layouts/Footer.jsp" %>
+	
 	</div>
 
 </body>

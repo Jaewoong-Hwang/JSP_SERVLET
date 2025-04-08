@@ -29,128 +29,43 @@ public class DBUtils {
 		return instance;
 	}
 	
-//	select M.M_NO,M.M_NAME,P.P_NAME,M.P_SCHOOL,M.M_JUMIN,M.M_CITY,P.P_TEL1,P.P_TEL2,P.P_TEL3
-//	from TBL_MEMBER_202005 M
-//	join TBL_PARTY_202005 P
-//	on M.P_CODE=P.P_CODE;
-	public List<MemberDto> selectAllMember() throws Exception{
-		String sql="select M.M_NO,M.M_NAME,P.P_NAME,M.P_SCHOOL,M.M_JUMIN,M.M_CITY,P.P_TEL1,P.P_TEL2,P.P_TEL3"
-				+ " from TBL_MEMBER_202005 M"
-				+ " join TBL_PARTY_202005 P"
-				+ " on M.P_CODE=P.P_CODE"
-				;
+	//강사테이블조회
+	
+	public List<TeacherDto> selectAllTeacher() throws Exception{
+		String sql="select * from tbl_teacher_202201";
 		
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		List<MemberDto> list = new ArrayList();
-		MemberDto dto = null;
+		pstmt= conn.prepareStatement(sql);
+		
+		rs=pstmt.executeQuery();
+		List<TeacherDto> list = new ArrayList();
+		TeacherDto dto = null;
 		if(rs!=null) {
+				while(rs.next()) {
+					dto = new TeacherDto();
+					dto.setTEACHER_CODE(rs.getString(1));
+					dto.setTEACHER_NAME(rs.getString(2));
+					dto.setCLASS_NAME(rs.getString(3));
+					dto.setCLASS_PRICE(rs.getInt(4));
+					dto.setTEACHER_REGIST_DATE(rs.getString(5));
+					list.add(dto);
+					
+					
+				}
+					
 			
-			while(rs.next()) {
-				dto = new MemberDto();	
-				dto.setM_no(rs.getString(1));
-				dto.setM_name(rs.getString(2));
-				dto.setP_name(rs.getString(3));
-				dto.setP_school(rs.getString(4));
-				dto.setM_jumin(rs.getString(5));
-				dto.setM_city(rs.getString(6));
-				dto.setP_tel1(rs.getString(7));
-				dto.setP_tel2(rs.getString(8));
-				dto.setP_tel3(rs.getString(9));
-				list.add(dto);
-			}
 		}
+		
+		
 		
 		pstmt.close();
 		rs.close();
 		return list;
+		
 	}
+	
 
-	public int insertVote(VoteDto dto) throws Exception{
-		pstmt = conn.prepareStatement("insert into TBL_VOTE_202005 values(?,?,?,?,?,?)");
-		pstmt.setString(1, dto.getV_jumin());
-		pstmt.setString(2, dto.getV_name());
-		pstmt.setString(3, dto.getM_no());
-		pstmt.setString(4, dto.getV_time());
-		pstmt.setString(5, dto.getV_area());
-		pstmt.setString(6, dto.getV_confirm());
-		
-		int result = pstmt.executeUpdate();
-		
-		conn.commit();
-		
-		pstmt.close();
-		return result;
-	}
 	
 	
-	public List<VoteDto> selectAllVote() throws Exception{
-//		select v_name,v_jumin,v_jumin,v_jumin,m_no,v_time,v_confirm
-//		from tbl_vote_202005
-//		where v_area='제1투표장';
-		
-		String sql="select * from tbl_vote_202005";
-		
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		List<VoteDto> list = new ArrayList();
-		VoteDto dto = null;
-		if(rs!=null) {
-			
-			while(rs.next()) {
-				dto = new VoteDto();	
-				dto.setV_jumin(rs.getString(1));
-				dto.setV_name(rs.getString(2));
-				dto.setM_no(rs.getString(3));
-				dto.setV_time(rs.getString(4));
-				dto.setV_area(rs.getString(5));
-				dto.setV_confirm(rs.getString(6));
-				
-				list.add(dto);
-			}
-		}
-		
-		pstmt.close();
-		rs.close();
-		return list;
-	}
-	
-	public List<SubVoteDto> selectAllVote2() throws Exception{
-//		select M.M_NO,m.m_name,COUNT(*)
-//		from tbl_member_202005 M
-//		join tbl_vote_202005 V
-//		on M.M_NO=V.M_NO
-//		group by M.M_NO,M.M_name
-//		order by COUNT(*) desc;
-		
-		String sql="select M.M_NO,m.m_name,COUNT(*)"
-				+ " from tbl_member_202005 M"
-				+ " join tbl_vote_202005 V"
-				+ " on M.M_NO=V.M_NO"
-				+ " group by M.M_NO,M.M_name"
-				+ " order by COUNT(*) desc";
-		
-		
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		List<SubVoteDto> list = new ArrayList();
-		SubVoteDto dto = null;
-		if(rs!=null) {
-			
-			while(rs.next()) {
-				dto = new SubVoteDto();	
-				dto.setM_no(rs.getString(1));
-				dto.setM_name(rs.getString(2));
-				dto.setCount(rs.getInt(3));
-				
-				list.add(dto);
-			}
-		}
-		
-		pstmt.close();
-		rs.close();
-		return list;
-	}
 }
 
 

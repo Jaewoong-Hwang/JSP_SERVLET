@@ -111,7 +111,7 @@ a {
 					<th>투표시간</th>
 					<th>유권자확인</th>
 				</tr>
-				<%@page import= "java.time.LocalDate,java.time.format.DateTimeFormatter" %>
+				<%@page import= "java.time.Period,java.time.LocalDate,java.time.format.DateTimeFormatter" %>
 				<tr>
 				
 					<td><%=voteDto2.getV_name() %></td>
@@ -119,17 +119,24 @@ a {
 					
 					<%
 					
-						String age = voteDto2.getV_jumin().substring(0, 6);
+						String age = voteDto2.getV_jumin().substring(0, 6); //19 + 960109 | 
 						System.out.println("age :" + age);
+						age="19" + age;
 						
-						
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");						
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");						
 						LocalDate date = LocalDate.parse(age,formatter);
 						System.out.println("date : " + date);
+						
+						//현재 날짜
+						LocalDate today = LocalDate.now();
+						
+						//만 나이 계산
+						int manAge =Period.between(date,today).getYears();
+						out.println("<td>"+manAge+"세</td>");
 					%>
 					
 					
-					<td><%=voteDto2.getV_jumin() %></td>
+					<%-- <td><%=voteDto2.getV_jumin() %></td> --%>
 					<%
 					
 						char gender=voteDto2.getV_jumin().charAt(6);
@@ -138,7 +145,7 @@ a {
 						else
 							out.print("<td>남자</td>");
 					%>
-					<td><%=voteDto2.getV_jumin() %></td>
+					<%-- <td><%=voteDto2.getV_jumin() %></td> --%>
 									
 					<td><%=voteDto2.getM_no() %></td>
 					<td><%=voteDto2.getV_time() %></td>

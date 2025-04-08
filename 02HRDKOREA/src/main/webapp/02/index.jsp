@@ -94,7 +94,7 @@ a {
 		<%@include file="/layouts/Nav.jsp"%>
 
 		<main>
-			<h2>02폴더</h2>
+			<h2>투표하기</h2>
 			<form name="vote_form" action="./create.jsp" method="post" onsubmit="return flase">
 				<div>
 
@@ -139,6 +139,7 @@ a {
 			//유효성 검사
 			if(form.v_jumin.value===""){
 				alert("주민번호가 입력되지 않았습니다!");
+				form.v_jumin.focus(); // 입력하지 않은 항목으로 커서 이동함
 				return;
 			}
 			if(form.v_confirm.vlaue===""){

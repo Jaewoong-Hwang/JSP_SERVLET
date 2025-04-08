@@ -84,6 +84,38 @@ public class DBUtils {
 	}
 	
 	
+	public List<VoteDto> selectAllVote() throws Exception{
+//		select v_name,v_jumin,v_jumin,v_jumin,m_no,v_time,v_confirm
+//		from tbl_vote_202005
+//		where v_area='제1투표장';
+		
+		String sql="select * from tbl_vote_202005";
+		
+		pstmt = conn.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		List<VoteDto> list = new ArrayList();
+		VoteDto dto = null;
+		if(rs!=null) {
+			
+			while(rs.next()) {
+				dto = new VoteDto();	
+				dto.setV_jumin(rs.getString(1));
+				dto.setV_name(rs.getString(2));
+				dto.setM_no(rs.getString(3));
+				dto.setV_time(rs.getString(4));
+				dto.setV_area(rs.getString(5));
+				dto.setV_confirm(rs.getString(6));
+				
+				list.add(dto);
+			}
+		}
+		
+		pstmt.close();
+		rs.close();
+		return list;
+	}
+	
+	
 }
 
 

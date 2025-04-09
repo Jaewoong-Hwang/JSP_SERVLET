@@ -6,10 +6,7 @@ public class ClassDto {
 	private String class_area;
 	private String tuition;
 	private String teacher_code;
-	
-	
-	public ClassDto(){}
-	
+	public ClassDto() {}
 	public ClassDto(String regist_month, String c_no, String class_area, String tuition, String teacher_code) {
 		super();
 		this.regist_month = regist_month;
@@ -53,6 +50,5 @@ public class ClassDto {
 		return "ClassDto [regist_month=" + regist_month + ", c_no=" + c_no + ", class_area=" + class_area + ", tuition="
 				+ tuition + ", teacher_code=" + teacher_code + "]";
 	}
-	
 	
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@ a {
 
 .wrapper>main {
 	height: calc(100vh - 80px - 50px - 80px);
-	overflow: auto;
+	overflow:auto;
 }
 
 .wrapper>main h2 {
@@ -69,6 +69,7 @@ a {
 .wrapper>main table th, .wrapper>main table td {
 	min-width: 80px !important;
 	min-height: 25px !important;
+	max-height: 25px !important;
 	border: 1px solid;
 	text-align: center;
 }
@@ -85,84 +86,67 @@ a {
 
 </head>
 <body>
-
+	
 	<div class="wrapper">
 		<!--  -->
-		<%@include file="/layouts/Header.jsp"%>
-
-		<!--  -->
-		<%@include file="/layouts/Nav.jsp"%>
-
-		<%@page import="Utils.*,java.util.*"%>
-		<%@page import= "java.time.LocalDate,java.time.format.DateTimeFormatter,java.text.NumberFormat,java.text.DecimalFormat" %>
-		<%
-		List<TeacherDto> list = DBUtils.getInstance().selectAllTeacher();
-		%>
+		<%@include file="/layouts/Header.jsp" %>
 		
-
+		<!--  -->
+		<%@include file="/layouts/Nav.jsp" %>
+		
 		<main>
 			<h2>강사조회</h2>
+			<!--  -->
 			<table>
-
 				<tr>
-
 					<th>강사코드</th>
 					<th>강사명</th>
 					<th>강의명</th>
 					<th>수강료</th>
 					<th>강사자격취득일</th>
-
-
 				</tr>
+				<%@page import="java.text.DecimalFormat,Utils.*,java.util.*,java.time.*,java.time.format.*" %>		
 				<%
-				for (TeacherDto teacherDto : list) {
+				  List<TeacherDto> list = DBUtils.getInstance().selectAllTeacher();
 				%>
-
+				<%
+				 for(TeacherDto dto : list)
+				 {
+				%>
 				<tr>
-
-					<td><%=teacherDto.getTEACHER_CODE()%></td>
-					<td><%=teacherDto.getTEACHER_NAME()%></td>
-					<td><%=teacherDto.getCLASS_NAME()%></td>
-					
+					<td><%=dto.getTeacher_code() %></td>
+					<td><%=dto.getTeacher_name() %></td>
+					<td><%=dto.getClass_name() %></td>
+					 
 					<%
-					//NumberFormat 방법
-					 Integer price = teacherDto.getCLASS_PRICE();
-				
-					/* NumberFormat nf = NumberFormat.getCurrencyInstance( Locale.KOREA );
-					out.println("<td>"+nf.format(price)+"</td>"); */ 
-					
-					
-					//DecimalFormat 방법
-					DecimalFormat fmt = new DecimalFormat("#,###");
-					
+						int price = dto.getClass_price();
+						DecimalFormat fmt = new DecimalFormat("#,###");
 					%>
+	
 					<td><%="\\"+fmt.format(price) %></td>
 					
-					<%-- <td><%=teacherDto.getCLASS_PRICE()%></td> --%>
-
 					<%
-					
-					String date= teacherDto.getTEACHER_REGIST_DATE();
-					//입력 포맷(yyMMdd)
-					DateTimeFormatter infmt = DateTimeFormatter.ofPattern("yyyyMMdd");
-					LocalDate myBirth = LocalDate.parse(date, infmt);
-					//출력 포맷(yyyy년MM월dd일생)
-					DateTimeFormatter outfmt = DateTimeFormatter.ofPattern("yyyy년MM월dd일");
-					out.println("<td>" + myBirth.format(outfmt) + "</td>");
+						String date = dto.getTeacher_regist_date();
+						//INFMT
+						DateTimeFormatter inFmt = DateTimeFormatter.ofPattern("yyyyMMdd");
+						LocalDate localDate = LocalDate.parse(date,inFmt);
+						//OUTFMT
+						DateTimeFormatter outFmt = DateTimeFormatter.ofPattern("yyyy년MM월dd일");
+						out.print("<td>"+localDate.format(outFmt)+"</td>");
+						
 					%>
-					<%-- <td><%=teacherDto.getTEACHER_REGIST_DATE()%></td> --%>
-
+					<%-- <td><%=dto.getTeacher_regist_date() %></td> --%>
 				</tr>
-				<%
-				}
+				<%	 
+				 }
 				%>
+
 			</table>
 		</main>
-
-
+		
 		<!--  -->
-		<%@include file="/layouts/Footer.jsp"%>
-
+		<%@include file="/layouts/Footer.jsp" %>
+	
 	</div>
 
 </body>

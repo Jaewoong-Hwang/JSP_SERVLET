@@ -1,70 +1,56 @@
 package Utils;
 
 public class TeacherDto {
-	private String TEACHER_CODE;
-	private String TEACHER_NAME;
-	private String CLASS_NAME;
-	private Integer CLASS_PRICE;
-	private String TEACHER_REGIST_DATE;
-
+	private String teacher_code;
+	private String teacher_name;
+	private String class_name;
+	private int class_price;
+	private String teacher_regist_date;
+	//getter and setter , toString , 생성자(디폴트 , 모든인자)
 	public TeacherDto() {}
-
-	public TeacherDto(String tEACHER_CODE, String tEACHER_NAME, String cLASS_NAME, Integer cLASS_PRICE,
-			String tEACHER_REGIST_DATE) {
+	public TeacherDto(String teacher_code, String teacher_name, String class_name, int class_price,
+			String teacher_regist_date) {
 		super();
-		TEACHER_CODE = tEACHER_CODE;
-		TEACHER_NAME = tEACHER_NAME;
-		CLASS_NAME = cLASS_NAME;
-		CLASS_PRICE = cLASS_PRICE;
-		TEACHER_REGIST_DATE = tEACHER_REGIST_DATE;
+		this.teacher_code = teacher_code;
+		this.teacher_name = teacher_name;
+		this.class_name = class_name;
+		this.class_price = class_price;
+		this.teacher_regist_date = teacher_regist_date;
 	}
-
-	public String getTEACHER_CODE() {
-		return TEACHER_CODE;
+	public String getTeacher_code() {
+		return teacher_code;
 	}
-
-	public void setTEACHER_CODE(String tEACHER_CODE) {
-		TEACHER_CODE = tEACHER_CODE;
+	public void setTeacher_code(String teacher_code) {
+		this.teacher_code = teacher_code;
 	}
-
-	public String getTEACHER_NAME() {
-		return TEACHER_NAME;
+	public String getTeacher_name() {
+		return teacher_name;
 	}
-
-	public void setTEACHER_NAME(String tEACHER_NAME) {
-		TEACHER_NAME = tEACHER_NAME;
+	public void setTeacher_name(String teacher_name) {
+		this.teacher_name = teacher_name;
 	}
-
-	public String getCLASS_NAME() {
-		return CLASS_NAME;
+	public String getClass_name() {
+		return class_name;
 	}
-
-	public void setCLASS_NAME(String cLASS_NAME) {
-		CLASS_NAME = cLASS_NAME;
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
 	}
-
-	public Integer getCLASS_PRICE() {
-		return CLASS_PRICE;
+	public int getClass_price() {
+		return class_price;
 	}
-
-	public void setCLASS_PRICE(Integer cLASS_PRICE) {
-		CLASS_PRICE = cLASS_PRICE;
+	public void setClass_price(int class_price) {
+		this.class_price = class_price;
 	}
-
-	public String getTEACHER_REGIST_DATE() {
-		return TEACHER_REGIST_DATE;
+	public String getTeacher_regist_date() {
+		return teacher_regist_date;
 	}
-
-	public void setTEACHER_REGIST_DATE(String tEACHER_REGIST_DATE) {
-		TEACHER_REGIST_DATE = tEACHER_REGIST_DATE;
+	public void setTeacher_regist_date(String teacher_regist_date) {
+		this.teacher_regist_date = teacher_regist_date;
 	}
-
 	@Override
 	public String toString() {
-		return "TeacherDto [TEACHER_CODE=" + TEACHER_CODE + ", TEACHER_NAME=" + TEACHER_NAME + ", CLASS_NAME="
-				+ CLASS_NAME + ", CLASS_PRICE=" + CLASS_PRICE + ", TEACHER_REGIST_DATE=" + TEACHER_REGIST_DATE + "]";
+		return "TeacherDto [teacher_code=" + teacher_code + ", teacher_name=" + teacher_name + ", class_name="
+				+ class_name + ", class_price=" + class_price + ", teacher_regist_date=" + teacher_regist_date + "]";
 	}
-
-	
 	
 }

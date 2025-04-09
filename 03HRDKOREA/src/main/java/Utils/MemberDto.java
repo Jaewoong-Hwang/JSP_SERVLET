@@ -1,7 +1,7 @@
 package Utils;
 
 public class MemberDto {
-	private String c_number;
+	private String c_no;
 	private String c_name;
 	private String phone;
 	private String address;
@@ -9,21 +9,21 @@ public class MemberDto {
 	
 	public MemberDto() {}
 
-	public MemberDto(String c_number, String c_name, String phone, String address, String grade) {
+	public MemberDto(String c_no, String c_name, String phone, String address, String grade) {
 		super();
-		this.c_number = c_number;
+		this.c_no = c_no;
 		this.c_name = c_name;
 		this.phone = phone;
 		this.address = address;
 		this.grade = grade;
 	}
 
-	public String getC_number() {
-		return c_number;
+	public String getc_no() {
+		return c_no;
 	}
 
-	public void setC_number(String c_number) {
-		this.c_number = c_number;
+	public void setc_no(String c_no) {
+		this.c_no = c_no;
 	}
 
 	public String getC_name() {
@@ -60,7 +60,7 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [c_number=" + c_number + ", c_name=" + c_name + ", phone=" + phone + ", address=" + address
+		return "MemberDto [c_no=" + c_no + ", c_name=" + c_name + ", phone=" + phone + ", address=" + address
 				+ ", grade=" + grade + "]";
 	}
 

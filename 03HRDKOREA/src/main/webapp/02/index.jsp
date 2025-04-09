@@ -92,6 +92,8 @@ a {
 //모든 회원정보 가져오기
 List<MemberDto> member_list=DBUtils.getInstance().selectAllMember();
 
+//모든 강사정보 가져오기
+List<TeacherDto> teacher_list=DBUtils.getInstance().selectAllTeacher();
 %>
 	
 	<div class="wrapper">
@@ -123,7 +125,7 @@ List<MemberDto> member_list=DBUtils.getInstance().selectAllMember();
 			for(MemberDto dto : member_list)
 			{
 			%>
-				<option value=<%=dto.getC_name() %>><%=dto.getC_name() %></option>
+				<option data-no=<%=dto.getc_no() %>value=<%=dto.getC_name() %>><%=dto.getC_name() %></option>
 			
 			
 			<%
@@ -151,7 +153,21 @@ List<MemberDto> member_list=DBUtils.getInstance().selectAllMember();
 		
 			<td>강의명</td>
 			<td>
-			<input type="hidden" name="teacher_code"/>
+			<select>
+			<option>강의선택</option>	
+			<%
+			
+			for(TeacherDto dto : teacher_list){
+			
+			%>
+			
+			<option data-price=<%=dto.getCLASS_PRICE() %>value=<%=dto.getCLASS_NAME() %>><%=dto.getCLASS_NAME() %></option>
+			
+			
+			<%
+			} 
+			%>
+			</select>
 			</td>
 		
 		</tr>
@@ -189,7 +205,14 @@ List<MemberDto> member_list=DBUtils.getInstance().selectAllMember();
 	const form=document.registFrom;
 	//Select onchange Event
 	form.c_name.addEventListener('change',function(e){
-		console.log(e.target.value);
+		console.log(e.target.selected);
+		const selectEl = e.target;
+		const selectedOption = selectEl.option[selectEl.selectedIndex];
+		console.log(selectedOption);
+		const cno = selectedOption.getAttribute("data-no")
+		
+		console.log(e.target.value.cno);
+
 	})
 	
 	</script>

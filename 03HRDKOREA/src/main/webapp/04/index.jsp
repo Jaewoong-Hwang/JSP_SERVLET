@@ -92,9 +92,46 @@ a {
 		
 		<!--  -->
 		<%@include file="/layouts/Nav.jsp" %>
+		<%@page import="Utils.*,java.util.*" %>
+		
+		
+		<%
+		
+		List<Join2Dto> teacher_list=DBUtils.getInstance().selectAllJoin2();
+		%>
+		
 		
 		<main>
 		<h2>강사매출현황</h2>
+		
+		<table>
+		<tr>
+			<th>강사코드</th>
+			<th>강의명</th>
+			<th>강사명</th>
+			<th>총매출</th>
+		
+		</tr>
+		
+		<%
+		for(Join2Dto dto : teacher_list){
+		
+		%>
+		
+		<tr>
+			<td><%=dto.getTeacher_code() %></td>
+			<td><%=dto.getClass_name() %></td>
+			<td><%=dto.getTeacher_name() %></td>
+			
+			
+			
+			<td><%=dto.getTotal_tuition() %></td>
+		
+		</tr>
+		<%
+		}
+		%>
+		</table>
 		</main>
 		
 		<!--  -->

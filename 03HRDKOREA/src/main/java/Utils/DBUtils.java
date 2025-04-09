@@ -124,4 +124,80 @@ public class DBUtils {
 		pstmt.close();
 		return result;
 	}
+	
+	/*03INDEX
+	 * select
+	 * c.regist_month,m.c_no,m.c_name,t.class_name,c.class_area,c.tuition,m.grade
+	 * from tbl_member_202201 m join tbl_class_202201 c on c.c_no=m.c_no join
+	 * tbl_teacher_202201 t on c.teacher_code=t.teacher_code;
+	 */
+	public List<Join1Dto> selectAllJoin1()throws Exception{
+		
+		String sql="select"
+				+ " c.regist_month,m.c_no,m.c_name,t.class_name,c.class_area,c.tuition,m.grade"
+				+ " from tbl_member_202201 m join tbl_class_202201 c on c.c_no=m.c_no join"
+				+ " tbl_teacher_202201 t on c.teacher_code=t.teacher_code";
+		
+		pstmt=conn.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		List<Join1Dto> list = new ArrayList();
+		Join1Dto dto = null;
+		if (rs != null) {
+
+			while (rs.next()) {
+				dto=new Join1Dto();
+				dto.setRegist_month(rs.getString(1));
+				dto.setC_no(rs.getString(2));
+				dto.setC_name(rs.getString(3));
+				dto.setClass_name(rs.getString(4));
+				dto.setClass_area(rs.getString(5));
+				dto.setTuition(rs.getString(6));
+				dto.setGrade(rs.getString(7));
+				list.add(dto);
+			}
+
+		}
+		rs.close();
+		pstmt.close();
+		return list;
+	}
+	
+	
+	/*
+	 * select t.teacher_code,t.class_name,t.teacher_name,sum(c.tuition) from
+	 * tbl_class_202201 c join tbl_teacher_202201 t on c.teacher_code=t.teacher_code
+	 * group by t.teacher_code,t.class_name,t.teacher_name order by sum(c.tuition)
+	 * desc;
+	 */
+public List<Join2Dto> selectAllJoin2()throws Exception{
+		
+		String sql="select t.teacher_code,t.class_name,t.teacher_name,sum(c.tuition) from"
+				+ " tbl_class_202201 c join tbl_teacher_202201 t on c.teacher_code=t.teacher_code"
+				+ " group by t.teacher_code,t.class_name,t.teacher_name order by sum(c.tuition)"
+				+ " desc";
+		
+		pstmt=conn.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		List<Join2Dto> list = new ArrayList();
+		Join2Dto dto = null;
+		if (rs != null) {
+
+			while (rs.next()) {
+				dto=new Join2Dto();
+
+				dto.setTeacher_code(rs.getString(1));
+				dto.setClass_name(rs.getString(2));
+				dto.setTeacher_name(rs.getString(3));
+				dto.setTotal_tuition(rs.getInt(4));
+				
+				list.add(dto);
+				
+				
+			}
+
+		}
+		rs.close();
+		pstmt.close();
+		return list;
+	}
 }

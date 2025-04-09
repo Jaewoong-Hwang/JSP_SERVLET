@@ -92,9 +92,64 @@ a {
 		
 		<!--  -->
 		<%@include file="/layouts/Nav.jsp" %>
+		<%@page import="Utils.*,java.util.*,java.time.format.*,java.time.*" %>
+		
+		
+		<%
+		
+		List<Join1Dto> join_list = DBUtils.getInstance().selectAllJoin1();
+		
+		%>
 		
 		<main>
 		<h2>회원정보조회</h2>
+		<table>
+			<tr>
+			<th>수강월</th>
+			<th>회원번호</th>
+			<th>회원명</th>
+			<th>강의명</th>
+			<th>강의장소</th>
+			<th>수강료</th>
+			<th>등급</th>
+			</tr>
+			
+			<%
+			for(Join1Dto dto : join_list){
+			
+			%>
+			
+			<tr>
+			
+			<%
+			
+			String date=dto.getRegist_month();
+			
+			DateTimeFormatter infmt = DateTimeFormatter.ofPattern("yyyyMM");
+			YearMonth yearMonth = YearMonth.parse(date,infmt);
+
+			DateTimeFormatter outfmt = DateTimeFormatter.ofPattern("yyyy년MM월");
+			out.println("<td>"+yearMonth.format(outfmt)+"</td>");
+			
+			%>
+			
+		<%-- 	<td><%=dto.getRegist_month() %></td> --%>
+			<td><%=dto.getC_no() %></td>
+			<td><%=dto.getC_name() %></td>
+			<td><%=dto.getClass_name() %></td>
+			<td><%=dto.getClass_area() %></td>
+			
+			
+			
+			<td><%=dto.getTuition() %></td>
+			
+			<td><%=dto.getGrade() %></td>
+			</tr>
+			
+			<%
+			}
+			%>			
+		</table>
 		</main>
 		
 		<!--  -->

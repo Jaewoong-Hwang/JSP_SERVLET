@@ -63,6 +63,31 @@ public class DBUtils {
 		
 	}
 	
+	public List<MemberDto> selectAllMember() throws Exception{
+		
+		String sql="select * from tbl_member_202201";
+		
+		pstmt=conn.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		List<MemberDto> list = new ArrayList();
+		MemberDto dto=null;
+		if(rs!=null){
+			while(rs.next()) {
+				dto = new MemberDto();
+				dto.setC_number(rs.getString(1));
+				dto.setC_name(rs.getString(1));
+				dto.setPhone(rs.getString(3));
+				dto.setAddress(rs.getString(4));
+				dto.setGrade(rs.getString(5));
+				list.add(dto);
+				
+			}
+			
+		}
+		pstmt.close();
+		rs.close();
+		return list;
+	}
 
 	
 	

@@ -85,6 +85,14 @@ a {
 
 </head>
 <body>
+
+<%@page import="java.util.*,Utils.*" %>
+<%
+
+//모든 회원정보 가져오기
+List<MemberDto> member_list=DBUtils.getInstance().selectAllMember();
+
+%>
 	
 	<div class="wrapper">
 		<!--  -->
@@ -95,12 +103,96 @@ a {
 		
 		<main>
 		<h2>수강신청</h2>
+		
+		<form action="./create.jsp" name="registForm">
+		<table>
+		
+		<tr>
+		
+			<td>수강월</td>
+			<td><input name="resgist_month"/></td>
+		
+		</tr>
+		<tr>
+		
+			<td>회원명</td>
+			<td>
+			<select name="c_name">
+			<%
+			
+			for(MemberDto dto : member_list)
+			{
+			%>
+				<option value=<%=dto.getC_name() %>><%=dto.getC_name() %></option>
+			
+			
+			<%
+			}
+			%>
+			</select>
+			
+			
+			</td>
+		
+		</tr>
+		<tr>
+		
+			<td>회원번호</td>
+			<td><input name="c_no"/></td>
+		
+		</tr>
+		<tr>
+		
+			<td>강의장소</td>
+			<td><input name="class_area"/></td>
+		
+		</tr>
+		<tr>
+		
+			<td>강의명</td>
+			<td>
+			<input type="hidden" name="teacher_code"/>
+			</td>
+		
+		</tr>
+		<tr>
+		
+			<td>수강료</td>
+			<td><input name="tuition"/></td>
+		
+		</tr>
+		<tr>
+		
+			<td colspan=2>
+				<button type="submit">수강신청</button>
+				<button type="reset">다시쓰기</button>
+			</td>
+			
+		
+		
+		</tr>
+		
+		</table>
+		
+		
+		
+		</form>
+		
 		</main>
 		
 		<!--  -->
 		<%@include file="/layouts/Footer.jsp" %>
 	
 	</div>
+	
+	<script>
+	const form=document.registFrom;
+	//Select onchange Event
+	form.c_name.addEventListener('change',function(e){
+		console.log(e.target.value);
+	})
+	
+	</script>
 
 </body>
 </html>

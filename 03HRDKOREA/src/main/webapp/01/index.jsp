@@ -94,7 +94,7 @@ a {
 		<%@include file="/layouts/Nav.jsp"%>
 
 		<%@page import="Utils.*,java.util.*"%>
-		<%@page import= "java.time.LocalDate,java.time.format.DateTimeFormatter,java.text.NumberFormat" %>
+		<%@page import= "java.time.LocalDate,java.time.format.DateTimeFormatter,java.text.NumberFormat,java.text.DecimalFormat" %>
 		<%
 		List<TeacherDto> list = DBUtils.getInstance().selectAllTeacher();
 		%>
@@ -125,12 +125,18 @@ a {
 					<td><%=teacherDto.getCLASS_NAME()%></td>
 					
 					<%
-					Integer price = teacherDto.getCLASS_PRICE();
+					//NumberFormat 방법
+					 Integer price = teacherDto.getCLASS_PRICE();
 				
-					NumberFormat nf = NumberFormat.getCurrencyInstance( Locale.KOREA );
-					out.println("<td>"+nf.format(price)+"</td>");
+					/* NumberFormat nf = NumberFormat.getCurrencyInstance( Locale.KOREA );
+					out.println("<td>"+nf.format(price)+"</td>"); */ 
+					
+					
+					//DecimalFormat 방법
+					DecimalFormat fmt = new DecimalFormat("#,###");
 					
 					%>
+					<td><%="\\"+fmt.format(price) %></td>
 					
 					<%-- <td><%=teacherDto.getCLASS_PRICE()%></td> --%>
 

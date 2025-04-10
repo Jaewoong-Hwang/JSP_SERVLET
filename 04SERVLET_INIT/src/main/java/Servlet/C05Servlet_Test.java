@@ -12,18 +12,20 @@ import javax.servlet.http.HttpSession;
 
 
 
-@WebServlet("/join.do")
+@WebServlet("/login.do")
 
-public class C04Servlet_Test extends HttpServlet{
+public class C05Servlet_Test extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("GET /join.do...");
-		req.getRequestDispatcher("/WEB-INF/join.jsp").forward(req, resp);
+		System.out.println("GET /login.do...");
+		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("GET /login.do...");
 		//파라미터받기
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
@@ -31,15 +33,21 @@ public class C04Servlet_Test extends HttpServlet{
 		//입력값
 		
 		
-		//작업처리->세션에 담기!
+		//세션과 대조
 		HttpSession session = req.getSession();
-		session.setAttribute("username", username);
-		session.setAttribute("password", password);
+		String dbUsername = (String)session.getAttribute("username");
+		String dbPassword = (String)session.getAttribute("password");
+		if(!username.equals(dbUsername)){
+			req.setAttribute("username_msg", "ID 가 일치하지 않습니다.");
+			
+		}
+		if(!password.equals(dbPassword)) {
+			req.setAttribute("password_msg", "PW 가 일치하지 않습니다.");
+		}
 		
 		//뷰(login.do redirect)
-		resp.sendRedirect(req.getContextPath()+"/login.do");
-		//05Servlet_test.java - GET / login.do 처리 서블릿 
-		//실제 login.jsp 는 / WEB-INF에서 생성하고  Forwarding 처리하기
+		 resp.sendRedirect(req.getContextPath()+"/main.do"); 
+		
 		
 	}
 	

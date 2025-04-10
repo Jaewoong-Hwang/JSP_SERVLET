@@ -8,12 +8,11 @@
 </head>
 <body>
 
-<h1>JOIN PAGE</h1>
-<form action="${pageContext.request.contextPath}/join.do"method="post">
+<h1>LOGIN PAGE</h1>
+<form action="${pageContext.request.contextPath}/login.do"method="post">
 	<input name="username" /><br>
 	<input name="password" /><br>
-	<button>회원가입</button>
-
+	<button>로그인</button>
 </form>
 </body>
 </html>

@@ -12,7 +12,7 @@ import Utils.MysqlDbUtils;
 import Utils.OracleDBUtils;
 import Utils.UserDto;
 
-@WebServlet("/join.do")
+/*@WebServlet("/join.do")*/
 public class Join extends HttpServlet{
 	
 	private OracleDBUtils dbutils;
@@ -40,7 +40,7 @@ public class Join extends HttpServlet{
 		//파라미터 받기
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		System.out.println("POST/join,do username:" + username);
+		System.out.println("POST/join.do username:" + username);
 		//유효성(생략)
 		
 		//처리작업(DB저장)

@@ -13,7 +13,7 @@ import Utils.MysqlDbUtils;
 import Utils.OracleDBUtils;
 import Utils.UserDto;
 
-@WebServlet("/login.do")
+/*@WebServlet("/login.do")*/
 public class Login extends HttpServlet{
 
 	private OracleDBUtils dbutils;

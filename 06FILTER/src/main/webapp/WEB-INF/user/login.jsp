@@ -8,5 +8,12 @@
 </head>
 <body>
 
+	<h1>LOGIN PAGE</h1>
+	<form action="${pageContext.request.contextPath}/join.do" method="post">
+		<input name="username" /><br/>
+		<input name="password" /><br/>
+		<button>로그인</button>
+	</form>
+
 </body>
 </html>

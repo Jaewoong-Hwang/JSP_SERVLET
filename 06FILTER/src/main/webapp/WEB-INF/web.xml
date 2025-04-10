@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
-  <display-name>06FILTER</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	<display-name>06FILTER</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>/WEB-INF/index.jsp</welcome-file>
+
+	</welcome-file-list>
+
+	<!-- 서블릿 -->
+	<servlet>
+
+		<servlet-name>Home</servlet-name>
+		<servlet-class>Servlet.Home</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/index.do</url-pattern>
+		<url-pattern>/main.do</url-pattern>
+
+	</servlet-mapping>
+	<!-- 필터ㅏ -->
+	<!-- <filter> <filter-name>Index</filter-name> <filter-class>Filter.C01Filter_Test</filter-class> 
+		</filter> <filter-mapping> <filter-name>Index</filter-name> <url-pattern>/index.do</url-pattern> 
+		<url-pattern>*.do</url-pattern> </filter-mapping> <filter> <filter-name>Main</filter-name> 
+		<filter-class>Filter.C02Filter_Test</filter-class> </filter> <filter-mapping> 
+		<filter-name>Main</filter-name> <url-pattern>/main.do</url-pattern> <url-pattern>*.do</url-pattern> 
+		</filter-mapping> -->
+
+
+	<filter>
+
+		<filter-name>UTF8_EncodingFilter</filter-name>
+		<filter-class>Filter.UTF8_EncodingFilter</filter-class>
+	</filter>
+
+
+	<filter-mapping>
+		<filter-name>UTF8_EncodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+
+	</filter-mapping>
+
 </web-app>

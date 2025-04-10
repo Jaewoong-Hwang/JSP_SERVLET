@@ -44,6 +44,11 @@ public class C05Servlet_Test extends HttpServlet{
 		if(!password.equals(dbPassword)) {
 			req.setAttribute("password_msg", "PW 가 일치하지 않습니다.");
 		}
+		if(!username.equals(dbUsername) || !password.equals(dbPassword) ) {
+			req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+			return;
+			
+		}
 		
 		//뷰(login.do redirect)
 		 resp.sendRedirect(req.getContextPath()+"/main.do"); 

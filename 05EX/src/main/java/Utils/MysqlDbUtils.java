@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MysqlDbUtils {
 	
-	private String url = "jdbc:mysql://localhost/bookDB";
+	private String url = "jdbc:mysql://localhost/testDB";
 	private String id = "root";
 	private String pw = "1234";
 	
@@ -29,7 +27,28 @@ public class MysqlDbUtils {
 		return instance;
 	}
 	
+	public int insert(UserDto userDto) throws Exception {
+		pstmt = conn.prepareStatement("insert into tbl_user values(?,?,?)");
+		pstmt.setString(1,userDto.getUsername());
+		pstmt.setString(2,userDto.getPassword());
+		pstmt.setString(3,userDto.getRole());
+		
+		int result =  pstmt.executeUpdate();
+		
+		pstmt.close();
+		return result;
+	}
 	
+	public UserDto selectOne(String username) throws Exception {
+		pstmt = conn.prepareStatement("");
+		rs = pstmt.executeQuery();
+		UserDto userDto = null;
+		if(rs!=null) {
+			rs.next();
+			userDto = new UserDto(rs.getString(1),rs.getString(2),rs.getString(3));
+		}
+		return userDto;
+	}
 
 }
 

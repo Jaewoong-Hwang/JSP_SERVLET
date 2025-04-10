@@ -29,7 +29,28 @@ public class OracleDBUtils {
 		return instance;
 	}
 	
+	public int insert(UserDto userDto) throws Exception {
+		pstmt = conn.prepareStatement("insert into tbl_user values(?,?,?)");
+		pstmt.setString(1,userDto.getUsername());
+		pstmt.setString(2,userDto.getPassword());
+		pstmt.setString(3,userDto.getRole());
+		
+		int result =  pstmt.executeUpdate();
+		
+		pstmt.close();
+		return result;
+	}
 	
+	public UserDto selectOne(String username) throws Exception {
+		pstmt = conn.prepareStatement("select * form tbl_user where username=?");
+		rs = pstmt.executeQuery();
+		UserDto userDto = null;
+		if(rs!=null) {
+			rs.next();
+			userDto = new UserDto(rs.getString(1),rs.getString(2),rs.getString(3));
+		}
+		return userDto;
+	}
 
 }
 

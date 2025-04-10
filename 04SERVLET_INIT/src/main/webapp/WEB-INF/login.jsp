@@ -7,23 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h1>LOGIN PAGE</h1>
-<form action="${pageContext.request.contextPath}/login.do"method="post">
-	<input name="username" /><br>
-	<input name="password" /><br>
-	<button>로그인</button>
-</form>
-
-<div>
-
-	${username_msg}
-
-</div>
-<div>
-
-	${passowrd_msg}
-
-</div>
+	<h1>LOGIN PAGE</h1>
+	<form action="${pageContext.request.contextPath}/login.do" method="post">
+		<input name="username" /> <br/>
+		<input name="password" /><br/>
+		<button>로그인</button>
+	</form>
+	<div>
+		${username_msg}
+	</div>
+	<div>
+		${password_msg}
+	</div>
 </body>
 </html>

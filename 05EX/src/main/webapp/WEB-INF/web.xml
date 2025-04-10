@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
-  <display-name>04SERVLET_INIT</display-name>
+  <display-name>05EX</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -8,19 +8,6 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    <welcome-file>/WEB-INF/index.jsp</welcome-file>
   </welcome-file-list>
-  
-  
-  <servlet>
-  	<servlet-name>C02Servlet</servlet-name>
-  	<servlet-class>Servlet.C02Servlet_Test</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>C02Servlet</servlet-name>
-  	<url-pattern>/TEST_02</url-pattern>
-  </servlet-mapping>
-  
 </web-app>
-
-
-

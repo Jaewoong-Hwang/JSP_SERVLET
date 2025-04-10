@@ -56,10 +56,10 @@ public class Join extends HttpServlet{
 		//뷰
 		if(result>0) {
 			resp.sendRedirect(req.getContextPath()+"/login.do");
-			return;
+			
 		}else {
 			req.getRequestDispatcher("/WEB-INF/user/join.jsp").forward(req, resp);
-			return;
+		
 		}
 	}
 

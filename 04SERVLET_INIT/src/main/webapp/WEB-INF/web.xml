@@ -14,11 +14,14 @@
 	</welcome-file-list>
 
 	<servlet>
-
 		<servlet-name>C02Servlet</servlet-name>
-		<servlet-class>Servlet.C02servlet_Test</servlet-class>
-
+		<servlet-class>Servlet.C02Servlet_Test</servlet-class>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>C02Servlet</servlet-name>
+		<url-pattern>/TEST_02</url-pattern>
+	</servlet-mapping>
+
 
 
 </web-app>

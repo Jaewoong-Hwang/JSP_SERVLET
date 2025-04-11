@@ -54,6 +54,45 @@
 		<url-pattern>/login.do</url-pattern>
 
 	</servlet-mapping>
+	
+	<servlet>
+
+		<servlet-name>AdminMain</servlet-name>
+		<servlet-class>Servlet.AdminMain</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminMain</servlet-name>
+		<url-pattern>/admin_main</url-pattern>
+
+	</servlet-mapping>
+	
+	
+	<servlet>
+
+		<servlet-name>ManagerMain</servlet-name>
+		<servlet-class>Servlet.ManagerMain</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ManagerMain</servlet-name>
+		<url-pattern>/manager_main</url-pattern>
+
+	</servlet-mapping>
+	
+	<servlet>
+
+		<servlet-name>UserMain</servlet-name>
+		<servlet-class>Servlet.UserMain</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserMain</servlet-name>
+		<url-pattern>/user_main</url-pattern>
+
+	</servlet-mapping>
+	
+	
 	<!-- 필터ㅏ -->
 	<!-- <filter> <filter-name>Index</filter-name> <filter-class>Filter.C01Filter_Test</filter-class> 
 		</filter> <filter-mapping> <filter-name>Index</filter-name> <url-pattern>/index.do</url-pattern> 
@@ -73,6 +112,22 @@
 	<filter-mapping>
 		<filter-name>UTF8_EncodingFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
+
+	</filter-mapping>
+	
+	
+	<filter>
+
+		<filter-name>PermissionFilter</filter-name>
+		<filter-class>Filter.PermissionFilter</filter-class>
+	</filter>
+
+
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/admin_main</url-pattern>
+		<url-pattern>/manager_main</url-pattern>
+		<url-pattern>/user_main</url-pattern>
 
 	</filter-mapping>
 

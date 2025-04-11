@@ -8,5 +8,9 @@
 </head>
 <body>
 <h1>ADMIN PAGE</h1>
+<form action="${pageContext.request.contextPath }" method="post">
+
+
+</form>
 </body>
 </html>

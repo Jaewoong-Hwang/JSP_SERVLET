@@ -10,20 +10,20 @@ public class C04HttpSessionAttributeListener implements HttpSessionAttributeList
 
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent event) {
-		// TODO Auto-generated method stub
-		HttpSessionAttributeListener.super.attributeAdded(event);
+		System.out.println("[LISTENER] C04HttpSessionAttributeListener Created");
+
 	}
 
 	@Override
 	public void attributeRemoved(HttpSessionBindingEvent event) {
-		// TODO Auto-generated method stub
-		HttpSessionAttributeListener.super.attributeRemoved(event);
+		System.out.println("[LISTENER] C04HttpSessionAttributeListener Removed");
+
 	}
 
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent event) {
-		// TODO Auto-generated method stub
-		HttpSessionAttributeListener.super.attributeReplaced(event);
+		System.out.println("[LISTENER] C04HttpSessionAttributeListener Replaced");
+	
 	}
 	
 }

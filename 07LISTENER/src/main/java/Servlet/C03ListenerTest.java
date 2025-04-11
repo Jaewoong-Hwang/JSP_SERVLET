@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebServlet(urlPatterns = {"/session/remove","/session/attr/add","/session/attr/replace","/session/attr/remove"})
-public class C03ListenerTest2 extends HttpServlet {
+public class C03ListenerTest extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,10 +23,12 @@ public class C03ListenerTest2 extends HttpServlet {
 				//세션제거
 				session.invalidate();				
 			}else if(uri.contains("/session/attr/add")) {
+				session.setAttribute("S_KEY", "S_VAL");
+			}else if(uri.contains("/session/attr/replace")){
+				session.setAttribute("S_KEY", "S_VAL2");
 				
-			}else {
-				
-				
+			}else if(uri.contains("/session/attr/remove")) {
+				session.removeAttribute("S_KEY");
 			}
 	}
 	

@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Utils.MysqlDbUtils;
-import Utils.OracleDBUtils;
 import Utils.UserDto;
 
 @WebServlet("/login.do")
 public class Login extends HttpServlet{
 
-	private OracleDBUtils dbutils;
+	private MysqlDbUtils dbutils;
 	
 	
 	@Override
 	public void init() throws ServletException {
 		try {
-			dbutils = OracleDBUtils.getInstance();
+			dbutils = MysqlDbUtils.getInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,6 +37,7 @@ public class Login extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("POST /login.do");
 		//파라미터
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
@@ -63,10 +63,10 @@ public class Login extends HttpServlet{
 		//뷰
 		if(isAuth) {
 			resp.sendRedirect(req.getContextPath()+"/main.do");
-			
+			return ;
 		}else {
 			req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
-			
+			return ;
 		}
 	}
 	

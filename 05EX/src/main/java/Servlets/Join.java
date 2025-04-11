@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Utils.MysqlDbUtils;
-import Utils.OracleDBUtils;
 import Utils.UserDto;
 
 @WebServlet("/join.do")
 public class Join extends HttpServlet{
 	
-	private OracleDBUtils dbutils;
+	private MysqlDbUtils dbutils;
 	
 	
 	@Override
 	public void init() throws ServletException {
 		try {
-			dbutils = OracleDBUtils.getInstance();
+			dbutils = MysqlDbUtils.getInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,20 +45,16 @@ public class Join extends HttpServlet{
 		int result=0;
 		try {
 			result = dbutils.insert(new UserDto(username,password,"ROLE_USER"));
-			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-		
 		}
 
 		//뷰
 		if(result>0) {
 			resp.sendRedirect(req.getContextPath()+"/login.do");
-			
 		}else {
 			req.getRequestDispatcher("/WEB-INF/user/join.jsp").forward(req, resp);
-		
 		}
 	}
 

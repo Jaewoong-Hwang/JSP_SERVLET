@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ADMIN PAGE</h1>
-<form action="${pageContext.request.contextPath }" method="post">
-
-
-</form>
+	<h1>ADMIN PAGE</h1>
 </body>
 </html>

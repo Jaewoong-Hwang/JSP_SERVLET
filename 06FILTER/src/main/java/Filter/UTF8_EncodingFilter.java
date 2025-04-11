@@ -13,13 +13,17 @@ public class UTF8_EncodingFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-			
+
 		//전
 		request.setCharacterEncoding("UTF-8");
+		
 		chain.doFilter(request, response);
 		
 		//후
-		response.setContentType("text/html; charset=UTR-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		
 	}
 
 }

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 public class MysqlDbUtils {
 	
-	private String url = "jdbc:mysql://localhost/testDB";
+	private String url = "jdbc:mysql://localhost/bookdb";
 	private String id = "root";
 	private String pw = "1234";
 	
@@ -40,7 +40,8 @@ public class MysqlDbUtils {
 	}
 	
 	public UserDto selectOne(String username) throws Exception {
-		pstmt = conn.prepareStatement("");
+		pstmt = conn.prepareStatement("select * from tbl_user where username=?");
+		pstmt.setString(1, username);
 		rs = pstmt.executeQuery();
 		UserDto userDto = null;
 		if(rs!=null) {

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Utils.MysqlDbUtils;
 import Utils.OracleDBUtils;
 import Utils.UserDto;
 
@@ -46,7 +45,7 @@ public class Join extends HttpServlet{
 		//처리작업(DB저장)
 		int result=0;
 		try {
-			//result = dbutils.insert(new UserDto(username,password,"ROLE_USER"));
+			result = dbutils.insert(new UserDto(username,password,"ROLE_USER"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

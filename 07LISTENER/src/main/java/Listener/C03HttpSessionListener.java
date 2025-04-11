@@ -9,14 +9,13 @@ public class C03HttpSessionListener implements HttpSessionListener{
 
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
-		// TODO Auto-generated method stub
-		HttpSessionListener.super.sessionCreated(se);
+		System.out.println("[LISTENER] C03HttpSessionListener Created");
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
-		// TODO Auto-generated method stub
-		HttpSessionListener.super.sessionDestroyed(se);
+		System.out.println("[LISTENER] C03HttpSessionListener Destroyed");
+		
 	}
 
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+    
+CONNECTION POOL(DataSource)
+	<Resource driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost/bookDb"
+              username="root"
+              password="1234"
+              name="jdbc/MysqlDB"
+              type="javax.sql.DataSource"
+              auth="Container"
+              maxActive="10"
+              maxIdle="2"
+              maxWait="5000" />
+              
+              
+              
+              <!-- CONNECTION POOL(DataSource) -->
+	<Resource driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:xe"
+              username="system"
+              password="1234"
+              name="jdbc/OracleDB"
+              type="javax.sql.DataSource"
+              auth="Container"
+              maxActive="20"
+              maxIdle="10"
+              maxWait="5000" />
+              
+              
+              
+      
+</Context>

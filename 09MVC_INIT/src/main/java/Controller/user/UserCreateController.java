@@ -5,11 +5,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
 import Domain.Dto.UserDto;
+import Domain.Service.UserServiceImpl;
 
 public class UserCreateController implements SubController {
 
-	HttpServletRequest req;
-	HttpServletResponse resp;
+	private HttpServletRequest req;
+	private HttpServletResponse resp;
+
+	private UserServiceImpl userService;
+
+	public UserCreateController() throws Exception {
+
+		userService = UserServiceImpl.getInstance();
+
+	}
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -37,14 +46,15 @@ public class UserCreateController implements SubController {
 				return;
 			}
 			// 서비스
+
 			// 뷰
-			throw new Exception("EXCEPTION TEST");
-			
+
 		} catch (Exception e) {
 			exceptionHandler(e);
-			try{
+			try {
 				req.getRequestDispatcher("/WEB-INF/view/user/error.jsp").forward(req, resp);
-			}catch(Exception e2) {}
+			} catch (Exception e2) {
+			}
 		}
 	}
 

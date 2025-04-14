@@ -15,32 +15,40 @@ import Controller.user.UserCreateController;
 
 @WebServlet("/")
 public class FrontController extends HttpServlet {
-	//서브컨트롤러 저장 자료구조("/endPoint":서브컨트롤러객체)
-		private Map<String,SubController> map = new HashMap();
+	// 서브컨트롤러 저장 자료구조("/endPoint":서브컨트롤러객체)
+	private Map<String, SubController> map = new HashMap();
 
-		@Override
-		public void init(ServletConfig config) throws ServletException {
+	@Override
+	public void init(ServletConfig config) throws ServletException {
 		
-		//인증(/user/*) - 회원CRUD, 로그인, 로그아웃 
-			map.put("/user/create",new UserCreateController());
-			
-		//도서(/book/*) - 도서CRUD
-		
+		try {
+			// 인증(/user/*) - 회원CRUD, 로그인, 로그아웃
+			map.put("/user/create", new UserCreateController());
+
+			// 도서(/book/*) - 도서CRUD
+		} catch (Exception e) {
+			exceptionHandler(e);
 		}
+	}
 
-		
-		
-		@Override
-		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		System.out.println("[FC] service...");
 		String endPoint = req.getServletPath(); // ProjectPath 제외 EndPoint만
 		System.out.println("[FC] endPoint.." + endPoint);
-		SubController controller =  map.get(endPoint);	//요청사항을 처리할 SubController get
-		controller.execute(req,resp);		 
-		
-		}
+		SubController controller = map.get(endPoint); // 요청사항을 처리할 SubController get
+		controller.execute(req, resp);
 
-		
-		
+	}
+
+	// 예외처리함수
+	public void exceptionHandler(Exception e) {
+
+		req.setAttribute("status", false);
+		req.setAttribute("message", e.getMessage());
+		req.setAttribute("exception", e);
+
+	}
+
 }

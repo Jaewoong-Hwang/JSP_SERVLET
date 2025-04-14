@@ -38,8 +38,13 @@ public class UserCreateController implements SubController {
 			}
 			// 서비스
 			// 뷰
+			throw new Exception("EXCEPTION TEST");
+			
 		} catch (Exception e) {
-
+			exceptionHandler(e);
+			try{
+				req.getRequestDispatcher("/WEB-INF/view/user/error.jsp").forward(req, resp);
+			}catch(Exception e2) {}
 		}
 	}
 
@@ -61,6 +66,15 @@ public class UserCreateController implements SubController {
 		// password 복잡도체크는 Business Layer 체크(Policy 에 의한 처리)
 
 		return true;
+	}
+
+	// 예외처리함수
+	public void exceptionHandler(Exception e) {
+
+		req.setAttribute("status", false);
+		req.setAttribute("message", e.getMessage());
+		req.setAttribute("exception", e);
+
 	}
 
 }

@@ -1,13 +1,13 @@
 package Tests;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import Domain.UserDao;
-import Domain.UserDaoImpl;
+import Domain.Dao.UserDao;
+import Domain.Dao.UserDaoImpl;
 import Domain.Dto.UserDto;
+
+
 
 class DaoTests {
 

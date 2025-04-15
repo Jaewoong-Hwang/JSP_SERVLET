@@ -17,6 +17,7 @@ public class UserCreateController implements SubController {
 	public UserCreateController() throws Exception {
 
 		userService = UserServiceImpl.getInstance();
+		throw new Exception("TESTTEST");
 
 	}
 
@@ -46,8 +47,15 @@ public class UserCreateController implements SubController {
 				return;
 			}
 			// 서비스
+			boolean isJoin = userService.userJoin(userDto);
 
 			// 뷰
+			if (isJoin) {
+				resp.sendRedirect(req.getContextPath() + "/index.do");
+			} else {
+				req.getRequestDispatcher("/WEB-INF/view/user/join.jsp").forward(req, resp);
+
+			}
 
 		} catch (Exception e) {
 			exceptionHandler(e);

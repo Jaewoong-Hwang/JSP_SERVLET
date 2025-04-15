@@ -11,26 +11,14 @@ CONNECTION POOL(DataSource)
               password="1234"
               name="jdbc/MysqlDB"
               type="javax.sql.DataSource"
+          
               auth="Container"
               maxActive="10"
               maxIdle="2"
               maxWait="5000" />
               
               
-              
-              <!-- CONNECTION POOL(DataSource) -->
-	<Resource driverClassName="oracle.jdbc.driver.OracleDriver"
-              url="jdbc:oracle:thin:@localhost:1521:xe"
-              username="system"
-              password="1234"
-              name="jdbc/OracleDB"
-              type="javax.sql.DataSource"
-              auth="Container"
-              maxActive="20"
-              maxIdle="10"
-              maxWait="5000" />
-              
-              
+
               
       
 </Context>

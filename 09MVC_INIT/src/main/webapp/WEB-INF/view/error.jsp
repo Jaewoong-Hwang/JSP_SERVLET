@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>USER ERROR PAGE</h1>
+	<h1>GLOBAL ERROR PAGE</h1>
 	status : ${ status }		<br/>
 	message : ${ message }		<br/>
 	exception : ${ exception }	<br/>

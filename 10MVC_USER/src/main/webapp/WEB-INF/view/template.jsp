@@ -4,7 +4,7 @@
 <html>
 <head>
 	<!-- link -->
-	<%@include file="/resources/layouts/link.jsp" %>
+	<%@include file="/resources/static/jsp/link.jsp" %>
 	
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -14,16 +14,17 @@
 	<div class="wrapper">
 		<header>
 			<!-- topHeader -->
-			<%@include file="/resources/layouts/topHeader.jsp" %>
+			<%@include file="/resources/layouts/jsp/topHeader.jsp" %>
 			<!-- nav -->
-			<%@include file="/resources/layouts/nav.jsp" %>
+			<%@include file="/resources/layouts/jsp/nav.jsp" %>
 		</header>
 		<main  class="layout">
-				<h1>HOME</h1>
+				TEMPLATE
 		</main>
-
+		
+		
 		<!-- footer -->
-		<%@include file="/resources/layouts/footer.jsp" %>
+		<%@include file="/resources/static/jsp/footer.jsp" %>
 	</div>
 
 	

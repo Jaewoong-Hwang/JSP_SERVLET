@@ -8,14 +8,11 @@ import Domain.Dao.ConnectionPool.ConnectionPool;
 import Domain.Dto.UserDto;
 
 
-
-
-
 public class UserServiceImpl {
 	
 	//
 	private UserDao userDao ;
-	private ConnectionPool connectionPool ;
+	private ConnectionPool connectionPool ;	//TX
 	
 	//싱글톤 패턴
 	private static UserServiceImpl instance;
@@ -47,8 +44,7 @@ public class UserServiceImpl {
 		}catch(SQLException e) {
 			connectionPool.rollbackTransaction();
 		}
-		
-		
+	
 		return  isJoin;
 		
 	};

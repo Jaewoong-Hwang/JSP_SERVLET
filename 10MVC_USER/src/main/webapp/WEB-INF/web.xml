@@ -28,9 +28,6 @@
     <servlet-name>default</servlet-name>
     <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
-  
-  
-  
   <servlet>
     <servlet-name>FrontController</servlet-name>
     <servlet-class>Controller.FrontController</servlet-class>
@@ -39,9 +36,6 @@
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
-  
-  
   <filter>
     <filter-name>UTF8_FILTER</filter-name>
     <filter-class>Filter.UTF8_EncodingFilter</filter-class>

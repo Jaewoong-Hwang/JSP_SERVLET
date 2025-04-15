@@ -103,7 +103,7 @@ public class UserDaoImpl extends Dao implements UserDao{
 	//단건조회
  
 	@Override
-	public UserDto select(UserDto userDto) {	
+	public UserDto select(String username) throws SQLException {	
 		return null;
 	}
 	//다건조회

@@ -16,7 +16,7 @@ public interface UserDao {
 	int delete(UserDto userDto) throws SQLException;
 	//단건조회
 
-	UserDto select(UserDto userDto);
+	UserDto select(String username) throws SQLException;
 	//다건조회
 
 	List<UserDto> selectAll();

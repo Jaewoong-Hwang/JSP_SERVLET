@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.user.UserCreateController;
+import Controller.user.UserLoginController;
+
 //@WebServlet("/")
 public class FrontController extends HttpServlet {
 	// 서브컨트롤러 저장 자료구조("/endPoint":서브컨트롤러객체)
@@ -29,6 +32,8 @@ public class FrontController extends HttpServlet {
 			map.put("/index.do", new HomeController());
 			
 			// 인증(/user/*) - 회원CRUD , 로그인 , 로그아웃
+			map.put("/user/create", new UserCreateController());
+			map.put("/user/login", new UserLoginController());
 			
 			// 도서(/book/*) - 도서CRUD
 			

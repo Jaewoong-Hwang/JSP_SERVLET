@@ -41,7 +41,7 @@ public class BookListController implements SubController{
 			//뷰
 			if(status) {
 				List<BookDto> list = (List<BookDto>)serviceResponse.get("list");
-				req.setAttribute("list", serviceResponse);
+				req.setAttribute("list", list);
 			}
 			
 			req.getRequestDispatcher("/WEB-INF/view/book/list.jsp").forward(req, resp);

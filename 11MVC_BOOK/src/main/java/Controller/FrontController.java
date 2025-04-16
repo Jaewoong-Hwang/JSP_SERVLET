@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.book.BookCreateController;
 import Controller.user.AdminMainController;
 import Controller.user.ManagerMainController;
 import Controller.user.UserCreateController;
@@ -43,8 +44,8 @@ public class FrontController extends HttpServlet {
 			
 			
 			// 도서(/book/*) - 도서CRUD
-			map.put("/book/list", null);
-			map.put("/book/create", null);
+			map.put("/book/list", new BookListController);
+			map.put("/book/create", new BookCreateController);
 			map.put("/book/read", null);
 			map.put("/book/update", null);
 			map.put("/book/delete", null);

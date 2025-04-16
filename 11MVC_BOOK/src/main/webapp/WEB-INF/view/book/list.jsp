@@ -19,7 +19,7 @@
 			<%@include file="/resources/layouts/nav.jsp" %>
 		</header>
 		<main  class="layout">
-			<h1>bookcreate</h1>
+			<h1>/BOOK/LIST</h1>
 	
 		</main>
 		

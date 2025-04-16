@@ -34,8 +34,17 @@ class DaoTests {
 	}
 	
 	@Test
+	@Disabled
 	void test4() throws Exception {
 		BookDao dao = BookDaoImpl.getInstance();
 		dao.selectAll().forEach(System.out::println);
+	}
+	
+	
+	@Test
+	
+	void test5() throws Exception {
+		BookDao dao = BookDaoImpl.getInstance();
+		System.out.println(dao.count());
 	}
 }

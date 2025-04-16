@@ -23,7 +23,7 @@ public class PageDto {
 	
 	public PageDto() {}
 	
-	public PageDto(int totalcount,Criteria criteria) {
+	public PageDto(long totalcount,Criteria criteria) {
 		
 		
 		this.criteria = criteria;
@@ -42,7 +42,7 @@ public class PageDto {
 		
 		//블럭에 표시할 페이지 번호 계산
 		//
-		this.endPage = (nowBlock * pagePerBlock<totalpage) ? nowBlock * pagePerBlock : totalpage ; /
+		this.endPage = (nowBlock * pagePerBlock<totalpage) ? nowBlock * pagePerBlock : totalpage ; 
 		
 		this.startPage=nowBlock * pagePerBlock -pagePerBlock + 1; //첫번째 블럭의 시작 1, 두번째 블럭 시작: 16
 		 

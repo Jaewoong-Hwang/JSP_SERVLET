@@ -4,43 +4,17 @@
 <div class="top-header layout  bg-success text-light">
 	
 	<ul class="user-block">
-		
-		<%
-		
-		
-		Boolean isAuth = session.getAttribute("isAuth")!=null?(Boolean)session.getAttribute("isAuth"):null;
-		if(isAuth==null)
-		
-		{
-		%>
-		<!-- login -->
 		<li>
-		<a href="${pageContext.request.contextPath}/user/login">
-		<span class="material-symbols-outlined">person</span>
-		</a>
+			<a href="javascript:void(0)">
+					<span class="material-symbols-outlined">login</span>
+			</a>
 		</li>
-		
-		<% 	
-			
-		}
-		else
-		{
-		%>
-		<!--logout  -->
 		<li>
-		<a href="${pageContext.request.contextPath}/user/logout">
-		<span class="material-symbols-outlined">logout</span>
-		</a>
+			<a href="javascript:void(0)">
+					<span class="material-symbols-outlined">logout</span>
+			</a>
 		</li>
-		
-		<% 
-			
-		}
-		%>
-		
-		
-		
-		
-		
-	</ul>	
+	</ul>
+	
+	
 </div>

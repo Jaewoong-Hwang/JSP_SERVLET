@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import Controller.user.UserCreateController;
 import Controller.user.UserLoginController;
+import Controller.user.UserLogoutController;
+
 
 //@WebServlet("/")
 public class FrontController extends HttpServlet {
@@ -31,6 +33,7 @@ public class FrontController extends HttpServlet {
 			// 인증(/user/*) - 회원CRUD , 로그인 , 로그아웃
 			map.put("/user/create", new UserCreateController());
 			map.put("/user/login", new UserLoginController());
+			map.put("/user/logout", new UserLogoutController());
 			
 			// 도서(/book/*) - 도서CRUD
 			

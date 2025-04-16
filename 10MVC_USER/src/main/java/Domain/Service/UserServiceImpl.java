@@ -1,7 +1,6 @@
 package Domain.Service;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -48,58 +47,49 @@ public class UserServiceImpl {
 		return  isJoin;	
 	};
 	
-	
-	public Map<String,Object> login(UserDto userDto,HttpSession session) throws Exception{
-		Map<String,Object> response = new LinkedHashMap(); //메모리관리하기 용이
+	public Map<String,Object> login(UserDto userDto,HttpSession session) throws Exception {
+		Map<String,Object> response = new LinkedHashMap();
+		
 		boolean isLogin = false;
 		try {
 			
-			connectionPool.beginTransaction();		
+			connectionPool.beginTransaction();	
 			
-			UserDto userDb  = userDao.select(userDto.getUsername()); //sql 질의 다수	
-
+			UserDto userDb  = userDao.select(userDto.getUsername());	//sql 질의 다수		
+			
 			if(userDb==null) {
 				response.put("isLogin", false);
 				response.put("message", "동일한 계정이 존재하지 않습니다.");
-		
 			}else {
 				
 				//패스워드 일치여부 확인(암호화 전)
 				if(!userDto.getPassword().equals(userDb.getPassword())) {
 					response.put("isLogin", false);
-					response.put("message", "패스워드가 일치하지 않습니다");
+					response.put("message", "패스워드가 일치하지 않습니다.");
 				}else {
-					//ID/PW 일치 -> 로그인 처리
+					//ID/패스워드 일치 -> 로그인처리
 					session.setAttribute("isAuth", true);
-					session.setAttribute("username", userDb.getUsername());
+					session.setAttribute("username",userDb.getUsername());
 					session.setAttribute("role", userDb.getRole());
 					session.setMaxInactiveInterval(60*10);
 					
 					response.put("isLogin", true);
-					response.put("message", "로그인 성공!!");
-					
+					response.put("message", "로그인 성공!");
 				}
-				
 			}
 			connectionPool.commitTransaction();
-			
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			connectionPool.rollbackTransaction();
-			throw e;
 		}
-		
 		return response;
 	}
-	public Map<String, Object> logout(HttpSession session) throws Exception{
+	
+	public Map<String, Object> logout(HttpSession session) throws Exception  {
 		session.invalidate();
-		Map<String, Object> response=new LinkedHashMap();
+		Map<String, Object> response = new LinkedHashMap();
 		response.put("isLogout",true);
 		return response;
 	}
-	
-	
-	
-	
 	
 
 }

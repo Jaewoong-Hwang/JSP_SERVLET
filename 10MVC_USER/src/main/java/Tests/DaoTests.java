@@ -16,12 +16,11 @@ class DaoTests {
 		
 		userDao.insert(new UserDto("user123511","1234","ROLE_USER"));
 	}
+
+	@Test
+	
 	void test2() throws Exception {
 		UserDao userDao = UserDaoImpl.getInstance();
-		System.out.println(userDao.select(""));
-		
+		System.out.println(userDao.select("bbbbbb"));
 	}
-	
-	
-
 }

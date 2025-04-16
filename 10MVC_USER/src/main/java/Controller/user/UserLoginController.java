@@ -21,6 +21,7 @@ public class UserLoginController implements SubController{
 		userService = UserServiceImpl.getInstance();	
 
 	}
+	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		this.req = req;
@@ -50,15 +51,16 @@ public class UserLoginController implements SubController{
 			//서비스
 			boolean isLogin = false;
 			Map<String,Object> serviceResponse =  userService.login(userDto,req.getSession());
-			isLogin = (boolean)serviceResponse.get("isLogin");
+			isLogin =  (boolean)serviceResponse.get("isLogin");
 			String message = (String)serviceResponse.get("message");
 		
 			//뷰
 			PrintWriter out = resp.getWriter();
 			if(isLogin) {
-				req.getSession().setAttribute("message", message);
-				resp.sendRedirect(req.getContextPath()+"/index.do?message="+message);
-				//out.println("<script>alert("+message+");location.href=index.do;</script>");
+				req.getSession().setAttribute("message",message);
+				resp.sendRedirect(req.getContextPath()+"/index.do");
+//				out.println("<script>alert("+message+");location.href=/index.do;</script>");
+				
 			}else {
 				req.getRequestDispatcher("/WEB-INF/view/user/login.jsp").forward(req, resp);
 			}

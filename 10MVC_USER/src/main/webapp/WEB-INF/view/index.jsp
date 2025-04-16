@@ -23,18 +23,16 @@
 				
 				${message}
 				<%
-				
-				session.removeAttribute("message");
-				
+					session.removeAttribute("message");
 				%>
+				
 		</main>
 
 		<!-- footer -->
 		<%@include file="/resources/layouts/footer.jsp" %>
 	</div>
-	
 
-	
+
 
 	
 </body>

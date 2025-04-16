@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-//@WebFilter("/*")	//url : /* 모든 url , *.do : 확장자가 do인 모든 요청
+//@WebFilter("/*")	/ /url : /* 모든 url , *.do : 확장자가 do인 모든 요청
 public class UTF8_EncodingFilter implements Filter{
 
 	@Override

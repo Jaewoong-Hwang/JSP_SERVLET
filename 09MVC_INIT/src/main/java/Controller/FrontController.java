@@ -16,13 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 public class FrontController extends HttpServlet {
 	// 서브컨트롤러 저장 자료구조("/endPoint":서브컨트롤러객체)
 	private Map<String, SubController> map = new HashMap();
-
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 
 		ServletContext context = config.getServletContext();
-
-
 		try {
 			// 기본
 			map.put("/", new HomeController());
@@ -38,10 +35,8 @@ public class FrontController extends HttpServlet {
 		}
 
 	}
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		try {
 			
 			System.out.println("[FC] service...");
@@ -56,13 +51,10 @@ public class FrontController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/view/error.jsp").forward(req, resp);
 		}
 	}
-
 	// 예외처리함수
 	public void exceptionHandler(Exception e,HttpServletRequest req) {
-		
 		req.setAttribute("status", false);
 		req.setAttribute("message", e.getMessage());
 		req.setAttribute("exception", e);
 	}
-
 }

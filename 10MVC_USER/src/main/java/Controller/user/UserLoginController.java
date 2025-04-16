@@ -1,5 +1,8 @@
 package Controller.user;
 
+import java.io.PrintWriter;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,60 +10,65 @@ import Controller.SubController;
 import Domain.Dto.UserDto;
 import Domain.Service.UserServiceImpl;
 
-public class UserLoginController implements SubController {
+public class UserLoginController implements SubController{
 
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
-
+	
 	private UserServiceImpl userService;
+	
+	public UserLoginController() throws Exception{
+		userService = UserServiceImpl.getInstance();	
 
-	public UserLoginController() throws Exception {
-		userService = UserServiceImpl.getInstance();
-//		throw new Exception("TESTTSTST");
 	}
-
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		this.req = req;
 		this.resp = resp;
-		System.out.println("[SC] UserCreateController execute..");
+		System.out.println("[SC] UserLoginController execute..");
+		
 
 		try {
 			String uri = req.getMethod();
-			if (uri.equals("GET")) {
+			if(uri.equals("GET")) {
 				req.getRequestDispatcher("/WEB-INF/view/user/login.jsp").forward(req, resp);
-				return;
+				return ;
 			}
-
-			// 파라미터(username,password)
+			
+			//파라미터(username,password)
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
-		
-			// 입력값검증
-			UserDto userDto = new UserDto(username, password, null);
+			
+			//입력값검증
+			UserDto userDto = new UserDto(username,password,null);
 			boolean isOk = isValid(userDto);
-			if (!isOk) {
+			if(!isOk) {
 				req.getRequestDispatcher("/WEB-INF/view/user/login.jsp").forward(req, resp);
-				return;
+				return ;
 			}
-
-			// 서비스
-			boolean isJoin = false;
-			//boolean isJoin = userService.userJoin(userDto);
-
-			// 뷰
-			if (isJoin) {
-				resp.sendRedirect(req.getContextPath() + "/index.do");
-			} else {
+			
+			//서비스
+			boolean isLogin = false;
+			Map<String,Object> serviceResponse =  userService.login(userDto,req.getSession());
+			isLogin = (boolean)serviceResponse.get("isLogin");
+			String message = (String)serviceResponse.get("message");
+		
+			//뷰
+			PrintWriter out = resp.getWriter();
+			if(isLogin) {
+				req.getSession().setAttribute("message", message);
+				resp.sendRedirect(req.getContextPath()+"/index.do?message="+message);
+				//out.println("<script>alert("+message+");location.href=index.do;</script>");
+			}else {
 				req.getRequestDispatcher("/WEB-INF/view/user/login.jsp").forward(req, resp);
 			}
-
-		} catch (Exception e) {
+			
+			
+		}catch(Exception e) {
 			exceptionHandler(e);
 			try {
 				req.getRequestDispatcher("/WEB-INF/view/user/error.jsp").forward(req, resp);
-			} catch (Exception e2) {
-			}
+			}catch(Exception e2) {}
 		}
 
 	}
@@ -83,12 +91,10 @@ public class UserLoginController implements SubController {
 
 		return true;
 	}
-
 	// 예외처리함수
 	public void exceptionHandler(Exception e) {
 		req.setAttribute("status", false);
 		req.setAttribute("message", e.getMessage());
 		req.setAttribute("exception", e);
 	}
-
 }

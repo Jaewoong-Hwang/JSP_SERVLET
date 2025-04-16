@@ -15,7 +15,7 @@ public class ConnectionPool {
 	private List<ConnectionItem> connectionPool;
 	//ConnectionPool 에 저장될 Connection 을 위한 변수
 	private final int size=10;
-	private String url="jdbc:mysql://localhost:3306/testDB";;
+	private String url="jdbc:mysql://localhost:3306/bookdb";;
 	private String id="root";
 	private String pw="1234";
 

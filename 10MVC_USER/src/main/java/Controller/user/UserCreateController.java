@@ -17,8 +17,6 @@ public class UserCreateController implements SubController{
 		userService = UserServiceImpl.getInstance();	
 //		throw new Exception("TESTTSTST");
 	}
-	
-	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		this.req = req;

@@ -3,6 +3,44 @@
 
 <div class="top-header layout  bg-success text-light">
 	
-	TOP_HEADER
-	
+	<ul class="user-block">
+		
+		<%
+		
+		
+		Boolean isAuth = session.getAttribute("isAuth")!=null?(Boolean)session.getAttribute("isAuth"):null;
+		if(isAuth==null)
+		
+		{
+		%>
+		<!-- login -->
+		<li>
+		<a href="${pageContext.request.contextPath}/user/login">
+		<span class="material-symbols-outlined">person</span>
+		</a>
+		</li>
+		
+		<% 	
+			
+		}
+		else
+		{
+		%>
+		<!--logout  -->
+		<li>
+		<a href="${pageContext.request.contextPath}/user/logout">
+		<span class="material-symbols-outlined">logout</span>
+		</a>
+		</li>
+		
+		<% 
+			
+		}
+		%>
+		
+		
+		
+		
+		
+	</ul>	
 </div>

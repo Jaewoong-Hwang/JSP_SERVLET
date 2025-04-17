@@ -83,13 +83,12 @@ public class UserServiceImpl {
 		}
 		return response;
 	}
-	
+
 	public Map<String, Object> logout(HttpSession session) throws Exception  {
 		session.invalidate();
 		Map<String, Object> response = new LinkedHashMap();
 		response.put("isLogout",true);
 		return response;
 	}
-	
 
 }

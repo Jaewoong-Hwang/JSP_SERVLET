@@ -3,11 +3,10 @@ package Domain.Dto;
 public class PageDto {
 	private static final long serialVersionUID = 5L;
 
-	private long totalCount;
-	//페이지정보(전체페이지,현재페이지)
+	private long totalCount;		//전체 게시물 건수 count
+	//페이지정보
 	private int totalpage;			//총게시물건수 / amount
 	private Criteria criteria;		//현재페이지,한페이지당 읽을 게시물의 건수가 저장되어있음
-	
 	//블럭정보
 	private int pagePerBlock;		//블럭에 표시할 페이지개수(15건 지정)
 	private int totalBlock;			//totalpage / pagePerBlock
@@ -25,27 +24,26 @@ public class PageDto {
 	
 	public PageDto(long totalcount,Criteria criteria) {
 		
-		this.totalCount = totalCount;
-		
-		this.criteria = criteria;
+		this.totalCount = totalcount;
+		this.criteria = criteria;	// pageno , amount , type keyword
 		
 		//전체페이지 계산
-		totalpage =(int)Math.ceil((1.0*totalcount)/criteria.getAmount()); 
+		totalpage =(int)Math.ceil((1.0*totalcount)/criteria.getAmount());
 		
-		//블럭계산   //페에지 블럭임 1~15 페이지 이런식
-		pagePerBlock=15; 
-		totalBlock = (int)Math.ceil( (1.0*totalpage) / pagePerBlock ); //총 페이지 나누기 15
+		//블럭계산
+		pagePerBlock=15;
+		totalBlock = (int)Math.ceil( (1.0*totalpage) / pagePerBlock );
 		nowBlock =  (int)Math.ceil ((1.0*criteria.getPageno()) / pagePerBlock);
 		
 		//Next,Prev 버튼 활성화 유무
-		prev=nowBlock>1; //1번째 블럭이라면 이전 버튼 x
-		next=nowBlock<totalBlock; 
+		prev=nowBlock>1;
+		next=nowBlock<totalBlock;
 		
 		//블럭에 표시할 페이지 번호 계산
 		//
-		this.endPage = (nowBlock * pagePerBlock<totalpage) ? nowBlock * pagePerBlock : totalpage ; 
+		this.endPage = (nowBlock * pagePerBlock<totalpage) ? nowBlock * pagePerBlock : totalpage ;
 		
-		this.startPage=nowBlock * pagePerBlock -pagePerBlock + 1; //첫번째 블럭의 시작 1, 두번째 블럭 시작: 16
+		this.startPage=nowBlock * pagePerBlock -pagePerBlock + 1;
 		 
 		
 	}
@@ -57,7 +55,6 @@ public class PageDto {
 				+ endPage + ", prev=" + prev + ", next=" + next + "]";
 	}
 	
-
 	public long getTotalCount() {
 		return totalCount;
 	}

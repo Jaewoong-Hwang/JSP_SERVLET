@@ -1,7 +1,5 @@
 package Controller.book;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,13 +30,13 @@ public class BookUpdateController implements SubController {
 			String isbn = req.getParameter("isbn");
 			
 			String pageno = req.getParameter("pageno")!=null?req.getParameter("pageno"):"1";
+			
 
 			BookDto bookDto = new BookDto(bookCode, bookName, publisher, isbn);
 
 			// 유효성
 			if (!isValid(bookDto)) {
 				resp.sendRedirect(req.getContextPath() + "/book/read?bookCode=" + bookCode);
-				
 			}
 
 			// 서비스
@@ -46,7 +44,6 @@ public class BookUpdateController implements SubController {
 
 			// 뷰
 			resp.sendRedirect(req.getContextPath() + "/book/list?pageno="+pageno);
-			
 
 		} catch (Exception e) {
 			exceptionHandler(e);
@@ -59,21 +56,14 @@ public class BookUpdateController implements SubController {
 	}
 
 	private boolean isValid(BookDto bookDto) {
-		if (bookDto.getBookCode().isEmpty()) {
-			req.setAttribute("bookCode", "BookCode를 입력하세요");
+
+		return true;
+	}
+
+	private boolean isValid(String bookCode) {
+		if (true) {
+			;
 		}
-		if (bookDto.getBookName().isEmpty()) {
-			req.setAttribute("bookName", "BookName를 입력하세요");
-		}
-		if (bookDto.getPublisher().isEmpty()) {
-			req.setAttribute("publisher", "출판사명을 입력하세요");
-		}
-		if (bookDto.getIsbn().isEmpty()) {
-			req.setAttribute("isbn", "isbn을 입력하세요");
-		}
-		if (bookDto.getBookCode().isEmpty() || bookDto.getBookName().isEmpty() || bookDto.getPublisher().isEmpty()
-				|| bookDto.getIsbn().isEmpty())
-			return false;
 		return true;
 	}
 

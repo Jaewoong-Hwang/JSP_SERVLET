@@ -73,7 +73,7 @@ public class UserDaoImpl extends Dao implements UserDao{
  
 	@Override
 	public UserDto select(String username) throws Exception{	
-	try {
+		try {
 			
 			connectionItem = connectionPool.getConnection();
 			Connection conn = connectionItem.getConn();
@@ -107,7 +107,7 @@ public class UserDaoImpl extends Dao implements UserDao{
 	}	
 	
 	
-	
+
 }
 
 

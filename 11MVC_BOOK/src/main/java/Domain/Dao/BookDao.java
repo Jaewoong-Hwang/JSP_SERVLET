@@ -10,7 +10,7 @@ public interface BookDao {
 
 	int insert(BookDto bookDto) throws Exception;
 
-	int update(UserDto userDto) throws SQLException;
+	int update(BookDto bookDto) throws Exception;
 
 	int delete(UserDto userDto) throws SQLException;
 	//단건조회
@@ -23,8 +23,5 @@ public interface BookDao {
 	
 	public long count() throws Exception;
 
-	public BookDto select(String bookCode) throws Exception;
-
-	public int update(BookDto bookDto2) throws Exception;
-	
+	BookDto select(String bookCode) throws Exception;
 }

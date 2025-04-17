@@ -6,12 +6,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.SubController;
 import Domain.Dto.BookDto;
 import Domain.Dto.Criteria;
 import Domain.Dto.PageDto;
 import Domain.Service.BookServiceImpl;
 
-public class BookReadController {
+public class BookReadController implements SubController{
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	
@@ -31,21 +32,18 @@ public class BookReadController {
 		try {
 
 			//파라미터 
-			String bookName = req.getParameter("bookNmae");
+			
 		
 			
 			
 				
-			
+			req.getRequestDispatcher("/WEB-INF/view/book/read.jsp").forward(req, resp);
 			//입력값
 			
 			//서비스
 		
 			//뷰
-			if() {
-				
-				req.setAttribute("bookName", bookName);
-			}
+			
 			
 			req.getRequestDispatcher("/WEB-INF/view/book/read.jsp").forward(req, resp);
 			

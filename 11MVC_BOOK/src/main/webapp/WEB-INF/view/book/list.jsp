@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	PageDto pageDto = request.getAttribute("pageDto") != null ? (PageDto) request.getAttribute("pageDto") : null;
+	%>
+
 
 	<div class="wrapper">
 		<header>
@@ -26,7 +30,8 @@
 			<!-- 게시물 표시  -->
 			<section>
 				<div>
-					PAGE : <span>1</span> / <span>100</span> (현재페이지 / 전체페이지)
+					TOTAL : <%=pageDto.getTotalCount() %>(건)<br/>
+					PAGE : <span><%=pageDto.getCriteria().getPageno()%></span> / <span><%=pageDto.getTotalpage()%></span> (현재페이지 / 전체페이지)
 				</div>
 				<table class="table">
 					<thead>
@@ -49,7 +54,10 @@
 						%>
 						<tr>
 							<td><%=dto.getBookCode()%></td>
-							<td><%=dto.getBookName()%></td>
+							<td>
+							<a href="${pageContext.request.contextPath}/book/read?bookCode=<%=dto.getBookCode()%>"><%=dto.getBookName()%></a>
+							
+							</td>
 							<td><%=dto.getPublisher()%></td>
 							<td><%=dto.getIsbn()%></td>
 						</tr>
@@ -67,16 +75,16 @@
 							<td colspan=3>
 								<nav aria-label="Page navigation example">
 									<ul class="pagination">
-										<%
-										PageDto pageDto = request.getAttribute("pageDto") != null ? (PageDto) request.getAttribute("pageDto") : null;
-										%>
+
 
 										<%
 										if (pageDto != null && pageDto.isPrev()) {
 										%>
 										<!-- 이전버튼 -->
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getStartPage()-1%>" aria-label="Previous"> 
-										<span aria-hidden="true">&laquo;</span>
+										<!--pageDto.getStartPage() - 1()-1%> 이전 블럭의 마지막 숫자 ex) 1~(15) / 16~30 =>16-1=(15)-->
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getStartPage()-pageDto.getPagePerBlock()%>"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										</a></li>
 										<%
 										}
@@ -88,10 +96,11 @@
 											int endNo = pageDto.getEndPage();
 											for (int i = startNo; i <= endNo; i++) {
 										%>
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/book/list?pageno=<%=i%>"><%=i %></a></li>
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/book/list?pageno=<%=i%>"><%=i%></a></li>
 
 										<%
-											}
+										}
 										}
 										%>
 
@@ -101,8 +110,9 @@
 										%>
 
 										<!-- 이후버튼 -->
-										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getEndPage()+1%>"aria-label="Next"> 
-										<span aria-hidden="true">&raquo;</span>
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getEndPage()+1%>"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 										</a></li>
 
 										<%
@@ -114,7 +124,8 @@
 
 							</td>
 							<td>
-								<!-- 글쓰기 --> <a href="javascript:void(0)"
+								<!-- 글쓰기 --> 
+								<a href="${pageContext.request.contextPath}/book/create"
 								class="btn btn-success">도서등록</a> <!-- 처음으로 --> <a
 								href="javascript:void(0)" class="btn btn-secondary">처음으로</a>
 							</td>

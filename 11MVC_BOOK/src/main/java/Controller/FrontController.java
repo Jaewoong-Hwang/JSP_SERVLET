@@ -47,7 +47,7 @@ public class FrontController extends HttpServlet {
 			// 도서(/book/*) - 도서CRUD
 			map.put("/book/list", new BookListController());
 			map.put("/book/create", new BookCreateController());
-			map.put("/book/read", null);
+			map.put("/book/read", new BookReadController());
 			map.put("/book/update", null);
 			map.put("/book/delete", null);
 			

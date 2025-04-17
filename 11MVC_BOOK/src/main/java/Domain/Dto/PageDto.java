@@ -3,7 +3,7 @@ package Domain.Dto;
 public class PageDto {
 	private static final long serialVersionUID = 5L;
 
-	
+	private long totalCount;
 	//페이지정보(전체페이지,현재페이지)
 	private int totalpage;			//총게시물건수 / amount
 	private Criteria criteria;		//현재페이지,한페이지당 읽을 게시물의 건수가 저장되어있음
@@ -25,6 +25,7 @@ public class PageDto {
 	
 	public PageDto(long totalcount,Criteria criteria) {
 		
+		this.totalCount = totalCount;
 		
 		this.criteria = criteria;
 		
@@ -56,6 +57,14 @@ public class PageDto {
 				+ endPage + ", prev=" + prev + ", next=" + next + "]";
 	}
 	
+
+	public long getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(long totalCount) {
+		this.totalCount = totalCount;
+	}
 
 	public Criteria getCriteria() {
 		return criteria;

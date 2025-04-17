@@ -24,5 +24,7 @@ public interface BookDao {
 	public long count() throws Exception;
 
 	public BookDto select(String bookCode) throws Exception;
+
+	public int update(BookDto bookDto2) throws Exception;
 	
 }

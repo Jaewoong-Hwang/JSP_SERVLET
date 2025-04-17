@@ -19,8 +19,32 @@
 			<%@include file="/resources/layouts/nav.jsp" %>
 		</header>
 		<main  class="layout">
-			<h1>TEMPLATE</h1>
-	
+			<h1>/BOOK/UPDATE</h1>
+	<form action="${pageContext.request.contextPath}/book/update"
+				method="post">
+				<div>
+					<label for="">bookCode : </label><span>${bookCode}</span><br /> 
+					<input type="text" name="bookCode" placeHolder="bookCode" />
+				</div>
+				<div>
+					<label for="">bookName : </label><span>${bookName}</span><br /> <input
+						type="text" name="bookName" placeHolder="bookName" />
+				</div>
+				<div>
+					<label for="">publisher : </label><span>${publisher}</span><br /> <input
+						type="text" name="publisher" placeHolder="publisher" />
+				</div>
+				<div>
+					<label for="">isbn : </label><span>${isbn}</span><br /> <input
+						type="text" name="isbn" placeHolder="isbn" />
+				</div>
+				<div>
+					<button>
+					<a href="">이전으로</a>
+					</button>
+					
+				</div>
+			</form>
 		</main>
 		
 		

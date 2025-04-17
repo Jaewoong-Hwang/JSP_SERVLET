@@ -88,4 +88,14 @@ public class BookServiceImpl {
 		return response;
 	}
 
+	public boolean modifyBook(BookDto bookDto) throws Exception {
+		
+		
+		int bookDto2 = bookDao.update(bookDto);
+		
+		
+		return bookDto2 > 0;
+		
+	}
+
 }

@@ -55,7 +55,7 @@
 						<tr>
 							<td><%=dto.getBookCode()%></td>
 							<td>
-							<a href="${pageContext.request.contextPath}/book/read?bookCode=<%=dto.getBookCode()%>"><%=dto.getBookName()%></a>
+							<a href="${pageContext.request.contextPath}/book/read?bookCode=<%=dto.getBookCode()%>"><%=dto.getBookName()%>&pageno=<%=pageDto.getCriteria().getPageno() %>"</a>
 							
 							</td>
 							<td><%=dto.getPublisher()%></td>

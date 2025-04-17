@@ -33,6 +33,7 @@ public class BookReadController implements SubController{
 
 			//파라미터 
 			String bookCode=req.getParameter("bookCode");
+			String pageno = req.getParameter("pageno");
 			//유효성
 			if(!isValid(bookCode)) {
 				//req.setAttribute("message", "유효성 체크 오류!");
@@ -46,7 +47,7 @@ public class BookReadController implements SubController{
 			Boolean status = (Boolean)serviceResponse.get("status");
 			if(status)
 				req.setAttribute("bookDto", serviceResponse.get("bookDto"));
-		
+		req.setAttribute("pageno", pageno);
 			//뷰
 			
 			

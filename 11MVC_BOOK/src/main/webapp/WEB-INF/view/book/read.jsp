@@ -24,7 +24,7 @@
 				method="post">
 				<div>
 					<label for="">bookCode : </label><span>${bookCode}</span><br /> 
-					<input type="text" name="bookCode" placeHolder="bookCode" value="${bookDto.bookCode}" />
+					<input type="text" name="bookCode" placeHolder="bookCode" value="${bookDto.bookCode}" readonly />
 				</div>
 				<div>
 					<label for="">bookName : </label><span>${bookName}</span><br /> <input
@@ -38,6 +38,9 @@
 					<label for="">isbn : </label><span>${isbn}</span><br /> <input
 						type="text" name="isbn" placeHolder="isbn" value="${bookDto.isbn}"/>
 				</div>
+				
+				<input type="hidden" name="pageno" value='${pageno}'/>
+				
 				<div>
 					<button>도서수정</button>
 					<a href="javascript:void(0)">도서삭제</a>

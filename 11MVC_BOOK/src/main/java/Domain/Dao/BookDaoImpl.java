@@ -225,7 +225,7 @@ public class BookDaoImpl implements BookDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new SQLException("BOODAO's INSERT SQL EXCEPTION!!");
+			throw new SQLException("BOOKDAO's INSERT SQL EXCEPTION!!");
 		} finally {
 			try {
 				pstmt.close();
@@ -235,6 +235,38 @@ public class BookDaoImpl implements BookDao {
 			connectionPool.releaseConnection(connectionItem);
 		}
 	
+	}
+
+	@Override
+	public int update(BookDto bookDto2) throws Exception {
+		try {
+			String sql = "update tbl_book set bookName =?, publisher=?, isbn=? where bookCode=?";
+			// connection get
+			connectionItem = connectionPool.getConnection();
+			Connection conn = connectionItem.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookDto2.getBookName());
+			pstmt.setString(2, bookDto2.getPublisher());
+			pstmt.setString(3, bookDto2.getIsbn());
+			pstmt.setString(4, bookDto2.getBookCode());
+
+			
+
+			return pstmt.executeUpdate();
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException("BOOKDAO's UPDATE SQL EXCEPTION!!");
+		} finally {
+			try {
+				pstmt.close();
+			} catch (Exception e2) {
+			}
+			// connection release
+			connectionPool.releaseConnection(connectionItem);
+		}
+		
 	}
 
 }

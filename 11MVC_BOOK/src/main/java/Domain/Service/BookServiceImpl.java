@@ -54,7 +54,7 @@ public class BookServiceImpl {
 	public Map<String, Object> getAllBooks(Criteria criteria) throws Exception {
 		Map<String, Object> response = new LinkedHashMap();
 		
-		if (criteria.getType() == null) { 
+		if (criteria.getType() == null || criteria.getType().isEmpty()) { 
 			int offset = (criteria.getPageno() - 1) * criteria.getAmount();
 
 			// 페이지별 건수
@@ -80,19 +80,23 @@ public class BookServiceImpl {
 			int amount = criteria.getAmount();
 			String type = criteria.getType();
 			String keyword = criteria.getKeyword();
-			List<BookDto> list = bookDao.selectAll(offset, amount,type,keyword);
+			List<BookDto> list = bookDao.selectAll(offset,amount,type,keyword);
 			
 			//PageDto
 			long totalCount = bookDao.count(criteria);
-	
+			PageDto pageDto = new PageDto(totalCount, criteria);
+			System.out.println("Service pageDto : " + pageDto);
+			
 			if (list.size() > 0) {
 			response.put("status", true);
 			response.put("list", list);
-//			response.put("pageDto", pageDto);
+			response.put("pageDto", pageDto);
 			} else {
 			response.put("status", false);
 			}
 		}
+		return response;
+	}
 
 //		return response;
 

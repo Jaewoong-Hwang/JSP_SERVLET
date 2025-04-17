@@ -75,8 +75,8 @@
 										if (pageDto != null && pageDto.isPrev()) {
 										%>
 										<!-- 이전버튼 -->
-										<li class="page-item"><a class="page-link" href="#"
-											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getStartPage()-1%>" aria-label="Previous"> 
+										<span aria-hidden="true">&laquo;</span>
 										</a></li>
 										<%
 										}
@@ -88,7 +88,7 @@
 											int endNo = pageDto.getEndPage();
 											for (int i = startNo; i <= endNo; i++) {
 										%>
-										<li class="page-item"><a class="page-link" href="#"><%=i %></a></li>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/book/list?pageno=<%=i%>"><%=i %></a></li>
 
 										<%
 											}
@@ -101,8 +101,8 @@
 										%>
 
 										<!-- 이후버튼 -->
-										<li class="page-item"><a class="page-link" href="#"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+										<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getEndPage()+1%>"aria-label="Next"> 
+										<span aria-hidden="true">&raquo;</span>
 										</a></li>
 
 										<%

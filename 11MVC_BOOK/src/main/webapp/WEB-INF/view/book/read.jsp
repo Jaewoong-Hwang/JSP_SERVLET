@@ -24,19 +24,19 @@
 				method="post">
 				<div>
 					<label for="">bookCode : </label><span>${bookCode}</span><br /> 
-					<input type="text" name="bookCode" placeHolder="bookCode" />
+					<input type="text" name="bookCode" placeHolder="bookCode" value="${bookDto.bookCode}" />
 				</div>
 				<div>
 					<label for="">bookName : </label><span>${bookName}</span><br /> <input
-						type="text" name="bookName" placeHolder="bookName" />
+						type="text" name="bookName" placeHolder="bookName"value="${bookDto.bookName}" />
 				</div>
 				<div>
 					<label for="">publisher : </label><span>${publisher}</span><br /> <input
-						type="text" name="publisher" placeHolder="publisher" />
+						type="text" name="publisher" placeHolder="publisher" value="${bookDto.publisher}"/>
 				</div>
 				<div>
 					<label for="">isbn : </label><span>${isbn}</span><br /> <input
-						type="text" name="isbn" placeHolder="isbn" />
+						type="text" name="isbn" placeHolder="isbn" value="${bookDto.isbn}"/>
 				</div>
 				<div>
 					<button>도서수정</button>

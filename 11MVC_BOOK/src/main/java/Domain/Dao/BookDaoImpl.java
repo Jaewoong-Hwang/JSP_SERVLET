@@ -172,23 +172,21 @@ public class BookDaoImpl implements BookDao {
 			connectionPool.releaseConnection(connectionItem);
 		}
 	}
+
 	@Override
 	public long count() throws Exception {
-		 long count=0;
-		
+		long count = 0;
+
 		try {
 			// connection get
 			connectionItem = connectionPool.getConnection();
 			Connection conn = connectionItem.getConn();
 
 			pstmt = conn.prepareStatement("select count(*) from tbl_book");
-		
 
 			rs = pstmt.executeQuery();
-			if (rs != null && rs.next()) 
-			count = rs.getLong(1);	
-				
-			
+			if (rs != null && rs.next())
+				count = rs.getLong(1);
 
 			return count;
 
@@ -203,6 +201,40 @@ public class BookDaoImpl implements BookDao {
 			// connection release
 			connectionPool.releaseConnection(connectionItem);
 		}
+	}
+
+	@Override
+	public BookDto select(String bookCode) throws Exception {
+		try {
+
+			connectionItem = connectionPool.getConnection();
+			Connection conn = connectionItem.getConn();
+
+			pstmt = conn.prepareStatement("select * from tbl_book where bookCode=?");
+			pstmt.setString(1, bookCode);
+			rs = pstmt.executeQuery();
+
+			BookDto bookDto = null;
+			if (rs != null && rs.next())
+				bookDto = new BookDto(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4));
+
+			
+			
+
+			return bookDto;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException("BOODAO's INSERT SQL EXCEPTION!!");
+		} finally {
+			try {
+				pstmt.close();
+			} catch (Exception e2) {
+			}
+			// Connection release
+			connectionPool.releaseConnection(connectionItem);
+		}
+	
 	}
 
 }

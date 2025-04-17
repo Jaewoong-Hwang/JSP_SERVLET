@@ -51,22 +51,18 @@ public class BookServiceImpl {
 		return response;
 	}
 
-	public Map<String, Object> getAllBooks(Criteria criteria) throws Exception{
+	public Map<String, Object> getAllBooks(Criteria criteria) throws Exception {
 		Map<String, Object> response = new LinkedHashMap();
 
-		//오프셋 값
-		int offset = (criteria.getPageno()-1) * criteria.getAmount();
-		//페이지별 건수
-		List<BookDto> list = bookDao.selectAll(offset,criteria.getAmount());
-		
-		//pageDto
+		// 오프셋 값
+		int offset = (criteria.getPageno() - 1) * criteria.getAmount();
+		// 페이지별 건수
+		List<BookDto> list = bookDao.selectAll(offset, criteria.getAmount());
+
+		// pageDto
 		long totalcount = bookDao.count();
-		PageDto pageDto = new PageDto(totalcount,criteria);
-		
-		
-		
-		
-		
+		PageDto pageDto = new PageDto(totalcount, criteria);
+
 		if (list.size() > 0) {
 			response.put("status", true);
 			response.put("list", list);
@@ -75,6 +71,20 @@ public class BookServiceImpl {
 			response.put("status", false);
 		}
 
+		return response;
+	}
+
+	public Map<String, Object> getBook(String bookCode) throws Exception {
+		Map<String, Object> response= new LinkedHashMap();
+		
+		BookDto bookDto = bookDao.select(bookCode);
+		
+		if(bookDto ==null)
+			response.put("status",false);
+		else {
+		response.put("status",true);
+		response.put("bookDto",bookDto);
+		}
 		return response;
 	}
 

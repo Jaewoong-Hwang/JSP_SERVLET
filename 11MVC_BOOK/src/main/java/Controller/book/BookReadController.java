@@ -32,15 +32,20 @@ public class BookReadController implements SubController{
 		try {
 
 			//파라미터 
+			String bookCode=req.getParameter("bookCode");
+			//유효성
+			if(!isValid(bookCode)) {
+				//req.setAttribute("message", "유효성 체크 오류!");
+				resp.sendRedirect(req.getContextPath()+"/book/list");
+			}
 			
 		
-			
-			
-				
-			req.getRequestDispatcher("/WEB-INF/view/book/read.jsp").forward(req, resp);
-			//입력값
-			
 			//서비스
+			Map<String,Object> serviceResponse=bookService.getBook(bookCode);
+			
+			Boolean status = (Boolean)serviceResponse.get("status");
+			if(status)
+				req.setAttribute("bookDto", serviceResponse.get("bookDto"));
 		
 			//뷰
 			
@@ -60,8 +65,14 @@ public class BookReadController implements SubController{
 	}
 
 	
-	private boolean isValid(BookDto bookDto) {
-		return true;
+	private boolean isValid(String bookCode) {
+		if(bookCode.isEmpty()) {
+			req.setAttribute("bookCode", "BookCode 유효성 오류!");
+		}
+		
+			
+		
+		return true;		
 	}
 	
 	// 예외처리함수

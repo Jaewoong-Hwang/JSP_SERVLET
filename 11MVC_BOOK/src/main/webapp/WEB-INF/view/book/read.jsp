@@ -40,7 +40,7 @@
 				<input type="hidden" name="pageno" value='${pageno}' />
 				<div>
 					<button>도서수정</button>
-					<a href="javascript:void(0)">도서삭제</a>
+					<a href="${pageContext.request.contextPath}/book/delete?${bookDto.bookCode}&pageno=${pageno}">도서삭제</a>
 				</div>
 			</form>
 		</main>

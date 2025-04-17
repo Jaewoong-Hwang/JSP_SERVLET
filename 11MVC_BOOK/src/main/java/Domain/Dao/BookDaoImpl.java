@@ -101,8 +101,27 @@ public class BookDaoImpl implements BookDao {
 	
  
 	@Override
-	public int delete(UserDto userDto) throws SQLException {
-		return 0;
+	public int delete(String bookCode) throws Exception {
+		try {
+			//connection  get
+			connectionItem = connectionPool.getConnection();
+			Connection conn = connectionItem.getConn();
+			
+			pstmt = conn.prepareStatement("delete from tbl_book where bookCode=?");
+			pstmt.setString(1, bookCode);
+
+			return pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new SQLException("BOOKDAO's DELETE SQL EXCEPTION!!");
+		}finally {
+			try {pstmt.close();}catch(Exception e2) {}
+			
+			//connection release
+			connectionPool.releaseConnection(connectionItem);
+			
+		}
 	}
 	//단건조회
  
@@ -238,6 +257,43 @@ public class BookDaoImpl implements BookDao {
 			connectionPool.releaseConnection(connectionItem);
 		}
 	}
+	@Override
+	public List<BookDto> selectAll(int offset, int amount, String type, String keyword) throws Exception {
+		
+		List<BookDto> list = new LinkedList();
+		BookDto dto = null;
+		try {
+			//connection  get
+			connectionItem = connectionPool.getConnection();
+			Connection conn = connectionItem.getConn();		
+			pstmt = conn.prepareStatement("select * from tbl_book where "+type+" like '%"+keyword+"%' order by bookCode desc limit ?,?");
+			pstmt.setInt(1, offset);
+			pstmt.setInt(2, amount);
+			
+			rs=pstmt.executeQuery();
+			if(rs!=null) {
+				
+				while(rs.next()) {
+					dto = new BookDto();
+					dto.setBookCode(rs.getString(1));
+					dto.setBookName(rs.getString(2));
+					dto.setPublisher(rs.getString(3));
+					dto.setIsbn(rs.getString(4));
+					
+					list.add(dto);
+				}
+			}
+			return list;		
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new SQLException("BOOKDAO's SELECT SQL EXCEPTION!!");
+		}finally {
+			try {pstmt.close();}catch(Exception e2) {}
+			//connection release
+			connectionPool.releaseConnection(connectionItem);	
+		}
+	}
+	
 }
 
 

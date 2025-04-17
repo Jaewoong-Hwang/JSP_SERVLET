@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.book.BookCreateController;
+import Controller.book.BookDeleteController;
 import Controller.book.BookListController;
 import Controller.book.BookReadController;
 import Controller.book.BookUpdateController;
@@ -51,7 +52,7 @@ public class FrontController extends HttpServlet {
 			map.put("/book/create", new BookCreateController());
 			map.put("/book/read", new BookReadController());
 			map.put("/book/update", new BookUpdateController());
-			map.put("/book/delete", null);
+			map.put("/book/delete", new BookDeleteController());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

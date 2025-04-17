@@ -40,7 +40,8 @@ public class BookListController implements SubController{
 			if(pageno==null) {
 				criteria =new Criteria();	//pageno=1,amount=10,type=null,keyword=null
 			}else {
-				criteria =new Criteria(pageno,10);
+				
+				criteria =new Criteria(pageno,10,type,keyword);
 			}
 			
 			//입력값

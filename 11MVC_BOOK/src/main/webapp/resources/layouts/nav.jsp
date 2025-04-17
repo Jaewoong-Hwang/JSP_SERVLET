@@ -32,7 +32,18 @@
         </li>
       </ul>
      
-      <form class="d-flex">
+     
+     <%@page import = "Domain.Dto.*" %>
+	<%
+	
+		PageDto pageDto_nav = request.getAttribute("pageDto" )!=null? (PageDto) request.getAttribute("pageDto" ):null
+		System.out.println("NAV ! : "+ pageDto_nav);
+	
+	%>
+     
+     
+     
+      <form class="d-flex" action="/book/list">
       	<select name="type">
       		<option value="bookCode">도서코드</option>
       		<option value="bookName">도서명</option>
@@ -40,6 +51,7 @@
       		<option value="isbn">ISBN</option>
       	</select>
         <input  name="keyword" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input type="hidden" name="pageno"  value="<%=pageDto_nav.getCriteria().getPageno()%>"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       

@@ -10,6 +10,7 @@ import java.util.List;
 import Domain.Dao.ConnectionPool.ConnectionItem;
 import Domain.Dao.ConnectionPool.ConnectionPool;
 import Domain.Dto.BookDto;
+import Domain.Dto.Criteria;
 import Domain.Dto.UserDto;
 
 public class BookDaoImpl implements BookDao {
@@ -284,6 +285,35 @@ public class BookDaoImpl implements BookDao {
 				}
 			}
 			return list;		
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new SQLException("BOOKDAO's SELECT SQL EXCEPTION!!");
+		}finally {
+			try {pstmt.close();}catch(Exception e2) {}
+			//connection release
+			connectionPool.releaseConnection(connectionItem);	
+		}
+	}
+	@Override
+	public long count(Criteria criteria) throws Exception {
+	
+		long count=0;
+		try {
+			//connection  get
+			connectionItem = connectionPool.getConnection();
+			Connection conn = connectionItem.getConn();
+			
+			String type = criteria.getType();
+			String keyword = criteria.getKeyword();
+			pstmt = conn.prepareStatement("select count(*) from tbl_book where "+type+" like '%"+keyword+"%'" );
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs!=null&& rs.next())
+				count = rs.getLong(1);
+				
+			return count;	
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			throw new SQLException("BOOKDAO's SELECT SQL EXCEPTION!!");

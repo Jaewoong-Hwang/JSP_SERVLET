@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Domain.Dto.BookDto;
+import Domain.Dto.Criteria;
 import Domain.Dto.UserDto;
 
 public interface BookDao {
@@ -21,9 +22,12 @@ public interface BookDao {
 
 	public List<BookDto> selectAll(int offset, int amount) throws Exception;
 	
-	public long count() throws Exception;
 
 	BookDto select(String bookCode) throws Exception;
 
 	List<BookDto> selectAll(int offset, int amount, String type, String keyword) throws Exception;
+	
+	
+	public long count() throws Exception;
+	public long count(Criteria criteria) throws Exception;
 }

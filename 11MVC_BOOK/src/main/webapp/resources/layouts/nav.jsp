@@ -36,22 +36,39 @@
      <%@page import = "Domain.Dto.*" %>
 	<%
 	
-		PageDto pageDto_nav = request.getAttribute("pageDto" )!=null? (PageDto) request.getAttribute("pageDto" ):null
+		PageDto pageDto_nav = request.getAttribute("pageDto" )!=null? (PageDto) request.getAttribute("pageDto" ):null;
 		System.out.println("NAV ! : "+ pageDto_nav);
+		Integer pageno_nav =null;
+		if(pageDto_nav!=null){
+			
+			pageno_nav = pageDto_nav.getCriteria().getPageno();
+		}
 	
 	%>
      
      
      
-      <form class="d-flex" action="/book/list">
+      <form class="d-flex" action="${pageContext.request.contextPath}/book/list">
       	<select name="type">
+	
+      		<option selected>-</option>
       		<option value="bookCode">도서코드</option>
       		<option value="bookName">도서명</option>
       		<option value="publisher">출판사</option>
       		<option value="isbn">ISBN</option>
       	</select>
         <input  name="keyword" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <input type="hidden" name="pageno"  value="<%=pageDto_nav.getCriteria().getPageno()%>"/>
+        <%
+        
+        if(pageno_nav!=null)
+        {
+        %>	
+        <input type="hidden" name="pageno"  value="<%=pageno_nav%>"/>
+        
+        <% 
+        }
+        %>
+        
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       

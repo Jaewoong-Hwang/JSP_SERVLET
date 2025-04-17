@@ -76,15 +76,25 @@ public class BookServiceImpl {
 		else
 		{
 			int offset = (criteria.getPageno() - 1) * criteria.getAmount();
-			
+			//페이지별 건수
 			int amount = criteria.getAmount();
 			String type = criteria.getType();
 			String keyword = criteria.getKeyword();
 			List<BookDto> list = bookDao.selectAll(offset, amount,type,keyword);
+			
+			//PageDto
+			long totalCount = bookDao.count(criteria);
+	
+			if (list.size() > 0) {
+			response.put("status", true);
+			response.put("list", list);
+//			response.put("pageDto", pageDto);
+			} else {
+			response.put("status", false);
+			}
 		}
 
-		return response;
-	}
+//		return response;
 
 	public Map<String, Object> getBook(String bookCode) throws Exception {
 

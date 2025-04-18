@@ -22,12 +22,18 @@ public interface BookDao {
 
 	public List<BookDto> selectAll(int offset, int amount) throws Exception;
 	
+	
 
 	BookDto select(String bookCode) throws Exception;
 
 	List<BookDto> selectAll(int offset, int amount, String type, String keyword) throws Exception;
-	
-	
+
 	public long count() throws Exception;
+	
 	public long count(Criteria criteria) throws Exception;
 }
+
+
+
+
+

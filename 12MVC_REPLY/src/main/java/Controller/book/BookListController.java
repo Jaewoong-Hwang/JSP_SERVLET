@@ -64,6 +64,7 @@ public class BookListController implements SubController{
 			
 	
 		}catch(Exception e) {
+			e.printStackTrace();
 			exceptionHandler(e);
 			try {
 				req.getRequestDispatcher("/WEB-INF/view/book/error.jsp").forward(req, resp);

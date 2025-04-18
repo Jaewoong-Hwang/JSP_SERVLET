@@ -1,20 +1,17 @@
 @charset "UTF-8";
 
-.reply-block .reply-header textarea {
-	height: 40px;
+.reply-block .reply-header textarea{
+	height : 40px;
+	
 }
-
-.reply-block.reply-body .items {
-	display: flex;
-	align-items: center;
-	gap: 20px; bordre : 1px solid;
+.reply-block .reply-body .item{
+	
+	display:flex;
+	align-items : center;
+	gap:20px;
+	border : 1px solid;
 	margin: 10px 0;
-	border: 1px solid;
 }
-
-.reply-block.reply-body .item {
-	/*border : 1px solid  */
+.reply-block .reply-body .item>*{
+	/* border : 1px solid */;
 }
-
-
-

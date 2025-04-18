@@ -64,10 +64,10 @@ body{
 	list-style:none;
 }
 .wrapper>header>.top-header>ul>li{
-	min-width:80px;
+	
 	height : 10px;
 	line-height : 10px;
-	padding : 0 20px;
+	padding-left : 20px;
 	border-right:1px solid;
 }
 .wrapper>header>.top-header>ul>li:last-child{

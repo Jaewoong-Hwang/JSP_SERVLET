@@ -91,16 +91,13 @@ public class BookDaoImpl implements BookDao {
 			e.printStackTrace();
 			throw new SQLException("BOOKDAO's INSERT SQL EXCEPTION!!");
 		}finally {
-			try {pstmt.close();}catch(Exception e2) {}
-			
+			try {pstmt.close();}catch(Exception e2) {}	
 			//connection release
-			connectionPool.releaseConnection(connectionItem);
-			
+			connectionPool.releaseConnection(connectionItem);	
 		}
 	}
+
 	
-	
- 
 	@Override
 	public int delete(String bookCode) throws Exception {
 		try {
@@ -117,13 +114,12 @@ public class BookDaoImpl implements BookDao {
 			e.printStackTrace();
 			throw new SQLException("BOOKDAO's DELETE SQL EXCEPTION!!");
 		}finally {
-			try {pstmt.close();}catch(Exception e2) {}
-			
+			try {pstmt.close();}catch(Exception e2) {}	
 			//connection release
-			connectionPool.releaseConnection(connectionItem);
-			
+			connectionPool.releaseConnection(connectionItem);	
 		}
 	}
+	
 	//단건조회
  
 	@Override
@@ -258,16 +254,18 @@ public class BookDaoImpl implements BookDao {
 			connectionPool.releaseConnection(connectionItem);
 		}
 	}
+	
+	
 	@Override
 	public List<BookDto> selectAll(int offset, int amount, String type, String keyword) throws Exception {
-		
 		List<BookDto> list = new LinkedList();
+		
 		BookDto dto = null;
 		try {
 			//connection  get
 			connectionItem = connectionPool.getConnection();
 			Connection conn = connectionItem.getConn();		
-			pstmt = conn.prepareStatement("select * from tbl_book where "+type+" like '%"+keyword+"%' order by bookCode desc limit ?,?");
+			pstmt = conn.prepareStatement("select * from tbl_book where "+type+" like '%"+keyword+"%'  order by bookCode desc limit ?,?");
 			pstmt.setInt(1, offset);
 			pstmt.setInt(2, amount);
 			
@@ -294,9 +292,9 @@ public class BookDaoImpl implements BookDao {
 			connectionPool.releaseConnection(connectionItem);	
 		}
 	}
+	
 	@Override
 	public long count(Criteria criteria) throws Exception {
-	
 		long count=0;
 		try {
 			//connection  get
@@ -305,7 +303,7 @@ public class BookDaoImpl implements BookDao {
 			
 			String type = criteria.getType();
 			String keyword = criteria.getKeyword();
-			pstmt = conn.prepareStatement("select count(*) from tbl_book where "+type+" like '%"+keyword+"%'" );
+			pstmt = conn.prepareStatement("select count(*) from tbl_book where "+type+" like '%"+keyword+"%'");
 			
 			rs=pstmt.executeQuery();
 			
@@ -323,6 +321,8 @@ public class BookDaoImpl implements BookDao {
 			connectionPool.releaseConnection(connectionItem);	
 		}
 	}
+	
+	
 	
 }
 

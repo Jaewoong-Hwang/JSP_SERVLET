@@ -9,9 +9,9 @@ import Controller.SubController;
 import Domain.Dto.BookDto;
 import Domain.Service.BookServiceImpl;
 
-public class BookReplyCreateController implements SubController {
+public class BookReplyCreateController implements SubController{
 	private HttpServletRequest req;
-	private HttpServletResponse resp;
+	private HttpServletResponse resp;	
 	
 	private BookServiceImpl bookService;
 
@@ -26,20 +26,18 @@ public class BookReplyCreateController implements SubController {
 		System.out.println("[SC] BookReplyCreateController execute..");
 		
 		try {
-			String uri = req.getMethod();
-			
-			
-	
+		
 			//파라미터
-			
+		
 			//유효성
-			
+		
 			//서비스
 			
 			
 			//뷰
-			PrintWriter out =resp.getWriter();
+			PrintWriter out = resp.getWriter();
 			out.println("{\"message\":\"success!!!\"}");
+			
 		}catch(Exception e) {
 			exceptionHandler(e);
 			try {

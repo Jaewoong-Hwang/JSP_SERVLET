@@ -8,7 +8,6 @@ import Domain.Dto.BookDto;
 import Domain.Service.BookServiceImpl;
 
 public class BookDeleteController implements SubController {
-
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private BookServiceImpl bookService;
@@ -26,12 +25,8 @@ public class BookDeleteController implements SubController {
 		try {
 			// 파라미터
 			String bookCode = req.getParameter("bookCode");
-		
 			String pageno = req.getParameter("pageno")!=null?req.getParameter("pageno"):"1";
 			
-
-			
-
 			// 유효성
 			if (!isValid(bookCode)) {
 				resp.sendRedirect(req.getContextPath() + "/book/read?bookCode=" + bookCode);
@@ -71,6 +66,4 @@ public class BookDeleteController implements SubController {
 		req.setAttribute("message", e.getMessage());
 		req.setAttribute("exception", e);
 	}
-	
-
 }

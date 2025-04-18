@@ -2,11 +2,13 @@
  * 
  */
 console.log("read.js..");
-//const path='${pageContext.request.contextPath}';
 
+//!!!!!! - 오류
+//const path=`${pageContext.request.contextPath}`;
+console.log('path : ',path)
 
 const replyAddBtn = document.querySelector(".reply-add-btn")
-console.log('path:',path)
+
 
 
 replyAddBtn.addEventListener('click',()=>{
@@ -17,43 +19,43 @@ replyAddBtn.addEventListener('click',()=>{
 		.then((resp)=>{ 
 			console.log(resp); 
 			document.querySelector('.reply-header textarea').value='';
-			createReplyItem();
-			})
-			.catch((error)=>{ console.log(error); })
+			receiveReplyData();
+		})
+		.catch((error)=>{ console.log(error); })
 		
 	
 	//createReplyItem();
 })
 
 
+
 function receiveReplyData(){
 	axios
-			.get(`${path}/book/reply/list?bookCode=${bookCode}`)
-			.then((resp)=>{ 
-				
-				//기존 items의 노드제거
-				const itemsEl = documnet.querySelector(".reply-body .imtes");
-				while(itemsEl.firstChild){
-					itemsEl.removeChild(itemsEl.firstChild)
-				}
-				console.log(resp);
-				const data = resp.data;
-				const cnt = data.replyCnt;
-				const replyCntEl=document.querySelector(".reply-cnt")
-				replyCntEl.innerHTML=cnt;
-				 
-				const items = data.replyList;
-				items.forEach(item?=>createReplyItem(item))
-				
-				
-				
-				})
-				.catch((error)=>{ console.log(error); })
-				
+		.get(`${path}/book/reply/list?bookCode=${bookCode}`)
+		.then((resp)=>{ 
+			
+			//기존 items의 노드제거
+			const itemsEl = document.querySelector('.reply-body .items');
+			while(itemsEl.firstChild){
+				itemsEl.removeChild(itemsEl.firstChild)
+			}
+			
+			console.log(resp);
+			const data = resp.data; 
+			const cnt = data.replyCnt;
+			const replyCntEl=document.querySelector(".reply-cnt");
+			replyCntEl.innerHTML=cnt;
+			const items = data.replyList;			
+			items.forEach(item=>createReplyItem(item))
+			
+		})
+		.catch((error)=>{ console.log(error); })	
 }
 receiveReplyData();
 
-function createReplyItem(){
+
+
+function createReplyItem(item){
 	const itemEl = document.createElement('div');
 	itemEl.className='item';
 	const leftEl = document.createElement('div');

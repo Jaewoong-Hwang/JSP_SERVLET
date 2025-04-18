@@ -1,5 +1,7 @@
 package Tests;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +52,7 @@ class DaoTests {
 	@Test
 	@Disabled
 	void test6() throws Exception {
-		BookReplyDaoImpl.getInstance().insert(new BookReplyDto(-1,"CDG000000001","aaaaa","내용내용"));
+		BookReplyDaoImpl.getInstance().insert(new BookReplyDto(-1,"CDG000000001","aaaaa","내용내용",LocalDateTime.now()));
 		
 	}
 }

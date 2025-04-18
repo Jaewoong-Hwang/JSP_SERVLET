@@ -1,26 +1,24 @@
 package Domain.Dao;
 
-import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
-import Domain.Dto.BookDto;
 import Domain.Dto.BookReplyDto;
 
-public class BookReplyDaoImpl extends Dao{
-
-	//싱글톤 패턴처리
-		private static BookReplyDaoImpl instance;
-		private BookReplyDaoImpl() throws Exception {
-			System.out.println("[DAO] BookReplyDaoImpl init...");		
-		};
-		public static BookReplyDaoImpl getInstance() throws Exception {
-			if(instance==null)
-				instance = new BookReplyDaoImpl();
-			return instance;
-		}
+public class BookReplyDaoImpl extends Dao {
 
 	
+	//싱글톤 패턴처리
+	private static BookReplyDaoImpl instance;
+	private BookReplyDaoImpl() throws Exception {
+		System.out.println("[DAO] BookReplyDaoImpl init...");		
+	};
+	public static BookReplyDaoImpl getInstance() throws Exception {
+		if(instance==null)
+			instance = new BookReplyDaoImpl();
+		return instance;
+	}
 	
 	public int insert(BookReplyDto dto) throws Exception {
 		try {
@@ -32,10 +30,9 @@ public class BookReplyDaoImpl extends Dao{
 			pstmt.setString(1, dto.getBookCode());
 			pstmt.setString(2, dto.getUsername());
 			pstmt.setString(3, dto.getContents());
-			pstmt.setTimestamp(4, Timestamp.valueOf(dto.getCreateAt()));
+			pstmt.setTimestamp(4, Timestamp.valueOf(dto.getCreateAt() ));
 			
-			
-			
+
 			return pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -47,5 +44,5 @@ public class BookReplyDaoImpl extends Dao{
 			connectionPool.releaseConnection(connectionItem);
 		}
 	}
-
+	
 }

@@ -38,12 +38,14 @@ public class BookReplyCreateController implements SubController{
 			
 			HttpSession session = req.getSession();
 			username = (String)session.getAttribute("username");
-			BookReplyDto dto = new BookReplyDto(-1,bookCode,username,contents,createAt);
 			if(username==null)
-				throw new ServletException("로그인이 필요합니다.");
+				throw new ServletException("로그인이 필요합니다!");
+			
+			BookReplyDto dto = new BookReplyDto(-1,bookCode,username,contents,createAt);
 			//유효성
 			if(!isValid(dto))
 				;
+			
 			//서비스
 			boolean isAdded=bookService.bookReplyAdd(dto);
 			
@@ -53,12 +55,9 @@ public class BookReplyCreateController implements SubController{
 				out.println("{\"message\":\"success!!!\"}");
 			}else {
 				PrintWriter out = resp.getWriter();
-				out.println("{\"message\":\"fail....\"}");
+				out.println("{\"message\":\"fail...\"}");
 			}
-			
-			
-			
-			
+				
 			
 		}catch(Exception e) {
 			exceptionHandler(e);
@@ -74,8 +73,6 @@ public class BookReplyCreateController implements SubController{
 		return true;
 	}
 
-	
-	
 	
 	// 예외처리함수
 	public void exceptionHandler(Exception e) {

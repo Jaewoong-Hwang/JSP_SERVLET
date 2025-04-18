@@ -21,7 +21,7 @@ replyAddBtn.addEventListener('click',()=>{
 			document.querySelector('.reply-header textarea').value='';
 			receiveReplyData();
 		})
-		.catch((error)=>{ console.log(error); })
+		.catch((error)=>{ console.log(resp); })
 		
 	
 	//createReplyItem();
@@ -49,7 +49,7 @@ function receiveReplyData(){
 			items.forEach(item=>createReplyItem(item))
 			
 		})
-		.catch((error)=>{ console.log(error); })	
+		.catch((error)=>{ console.log(resp); })	
 }
 receiveReplyData();
 

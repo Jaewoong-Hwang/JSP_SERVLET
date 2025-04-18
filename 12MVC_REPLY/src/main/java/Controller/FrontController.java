@@ -59,8 +59,6 @@ public class FrontController extends HttpServlet {
 			map.put("/book/reply/create", new BookReplyCreateController());
 			map.put("/book/reply/list", new BookReplyListController());
 			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("서브컨트롤러 등록오류");

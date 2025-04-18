@@ -17,7 +17,6 @@ import Domain.Dto.BookReplyDto;
 import Domain.Service.BookServiceImpl;
 
 public class BookReplyListController implements SubController{
-
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	
@@ -31,41 +30,36 @@ public class BookReplyListController implements SubController{
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		this.req = req;
 		this.resp = resp;
-		System.out.println("[SC] BookReplyListController execute..");
+		System.out.println("[SC] BookServiceImpl execute..");
 	
 		try {
-
-			//파라미터 
 			
+			//파라미터 
 			String bookCode =req.getParameter("bookCode");
 			
-			
-			
 			//입력값
-			if(!isValid(bookCode)) {
-				
+			if(!isValid(bookCode))
 				;
-			}
+			
 			//서비스
 			List<BookReplyDto> serviceResponse =  bookService.getAllBookReply(bookCode);
 			long cnt = bookService.bookReplyCount(bookCode);
-			Map<String,Object> responseEntity=new LinkedHashMap();
-			responseEntity.put("replyCnt", cnt);
-			responseEntity.put("replyCnt", serviceResponse);
 			
-			//뷰(Date 전달 JSON)
+			Map<String,Object> responseEntity = new LinkedHashMap();
+			responseEntity.put("replyCnt", cnt);
+			responseEntity.put("replyList", serviceResponse);
+			
+			//뷰(Data 전달 JSON)
 			resp.setContentType("application/json");
-			ObjectMapper objectMapper =new ObjectMapper();
+			ObjectMapper objectMapper= new ObjectMapper();
 			
 			objectMapper.registerModule(new JavaTimeModule());
 			objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 			
-			String JsonData=objectMapper.writeValueAsString(responseEntity);
+			String JsonData = objectMapper.writeValueAsString(responseEntity);
 			
 			PrintWriter out = resp.getWriter();
 			out.write(JsonData);
-			
-			
 			
 	
 		}catch(Exception e) {
@@ -84,12 +78,12 @@ public class BookReplyListController implements SubController{
 		return true;
 	}
 
-	
+
 	// 예외처리함수
 	public void exceptionHandler(Exception e) {
 		req.setAttribute("status", false);
 		req.setAttribute("message", e.getMessage());
 		req.setAttribute("exception", e);
 	}
-
+	
 }

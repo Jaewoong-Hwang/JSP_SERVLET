@@ -139,19 +139,17 @@ public class BookServiceImpl {
 	}
 	
 	public boolean bookReplyAdd(BookReplyDto dto) throws Exception{
-		int result=bookReplyDaoImpl.insert(dto);
+		int result = bookReplyDaoImpl.insert(dto);
 		return result>0;
-		
 	}
-	public List<BookReplyDto> getAllBookReply(String bookCode)throws Exception {
-		List<BookReplyDto> list =bookReplyDaoImpl.selectAll(bookCode);
-		
+	
+	public List<BookReplyDto> getAllBookReply(String bookCode) throws Exception{
+		List<BookReplyDto> list =  bookReplyDaoImpl.selectAll(bookCode);
 		return list;
 	}
-	public Long bookReplyCount(String bookCode) throws Exception{
+	public long bookReplyCount(String bookCode) throws Exception{
 		long cnt = bookReplyDaoImpl.count(bookCode);
 		return cnt;
 	}
-	
 	
 }

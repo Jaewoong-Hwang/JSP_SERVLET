@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import Domain.Dao.BookDao;
 import Domain.Dao.BookDaoImpl;
+import Domain.Dao.BookReplyDaoImpl;
 import Domain.Dao.UserDao;
 import Domain.Dao.UserDaoImpl;
 import Domain.Dto.BookDto;
+import Domain.Dto.BookReplyDto;
 import Domain.Dto.UserDto;
 
 class DaoTests {
@@ -40,8 +42,15 @@ class DaoTests {
 		dao.selectAll().forEach(System.out::println);
 	}
 	@Test
+	@Disabled
 	void test5() throws Exception {
 		BookDao dao = BookDaoImpl.getInstance();
 		System.out.println(dao.count());
+	}
+	@Test
+	@Disabled
+	void test6() throws Exception {
+		BookReplyDaoImpl.getInstance().insert(new BookReplyDto(-1,"CDG000000001","aaaaa","내용내용"));
+		
 	}
 }

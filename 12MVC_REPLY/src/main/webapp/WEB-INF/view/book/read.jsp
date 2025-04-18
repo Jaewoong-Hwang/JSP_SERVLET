@@ -9,7 +9,9 @@
 <!--  -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/book/read.css" />
-	<script src="${pageContext.request.contextPath}/resources/js/book/read.js" defer></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/book/read.js"
+	defer></script>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -56,7 +58,7 @@
 
 			<div class="reply-block">
 
-				<div class="rely-header">
+				<div class="reply-header">
 
 					<div>
 
@@ -74,17 +76,19 @@
 				<div class="reply-body">
 					<div class="items">
 
-						<div class="left">
-							<div class="profile"></div>
-							<div>username</div>
-						</div>
-						<div class="right">
-							<div class="data">2025-01-01</div>
-							<div class="context">
-								<textarea name="" id="" cols="30" rows="10"></textarea>
-
+						<div class="item">
+							<div class="left">
+								<div class="profile"></div>
+								<div class="username">username</div>
 							</div>
-							<div class="button-group"></div>
+							<div class="right">
+								<div class="data">2025-01-01</div>
+								<div class="content">
+									<textarea name="" id="" cols="30" rows="2"></textarea>
+
+								</div>
+								<div class="button-group"></div>
+							</div>
 						</div>
 					</div>
 				</div>

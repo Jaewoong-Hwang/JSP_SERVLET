@@ -4,14 +4,17 @@
 	height: 40px;
 }
 
-.reply-block.reply-body .item {
+.reply-block.reply-body .items {
 	display: flex;
 	align-items: center;
 	gap: 20px; bordre : 1px solid;
 	margin: 10px 0;
-	bordre: 1px solid;
+	border: 1px solid;
 }
 
-.reply-block.reply-body .item* {
+.reply-block.reply-body .item {
 	/*border : 1px solid  */
 }
+
+
+

@@ -6,7 +6,9 @@ import java.util.Map;
 
 import Domain.Dao.BookDao;
 import Domain.Dao.BookDaoImpl;
+import Domain.Dao.BookReplyDaoImpl;
 import Domain.Dto.BookDto;
+import Domain.Dto.BookReplyDto;
 import Domain.Dto.Criteria;
 import Domain.Dto.PageDto;
 
@@ -14,11 +16,13 @@ public class BookServiceImpl {
 
 	//
 	private BookDao bookDao;
+	private BookReplyDaoImpl bookReplyDaoImpl;
 	
 	//싱글톤 패턴
 	private static BookServiceImpl instance;
 	private BookServiceImpl() throws Exception{	
 		bookDao = BookDaoImpl.getInstance();
+		bookReplyDaoImpl = BookReplyDaoImpl.getInstance();
 	}
 	public static BookServiceImpl getInstance() throws Exception{
 		if(instance==null)
@@ -132,6 +136,21 @@ public class BookServiceImpl {
 		int result = bookDao.delete(bookCode);
 
 		return result>0;
+	}
+	
+	public boolean bookReplyAdd(BookReplyDto dto) throws Exception{
+		int result=bookReplyDaoImpl.insert(dto);
+		return result>0;
+		
+	}
+	public List<BookReplyDto> getAllBookReply(String bookCode)throws Exception {
+		List<BookReplyDto> list =bookReplyDaoImpl.selectAll(bookCode);
+		
+		return list;
+	}
+	public Long bookReplyCount(String bookCode) throws Exception{
+		long cnt = bookReplyDaoImpl.count(bookCode);
+		return cnt;
 	}
 	
 	

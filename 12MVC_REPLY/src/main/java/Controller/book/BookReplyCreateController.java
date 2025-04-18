@@ -1,12 +1,15 @@
 package Controller.book;
 
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
-import Domain.Dto.BookDto;
+import Domain.Dto.BookReplyDto;
 import Domain.Service.BookServiceImpl;
 
 public class BookReplyCreateController implements SubController{
@@ -28,15 +31,31 @@ public class BookReplyCreateController implements SubController{
 		try {
 		
 			//파라미터
-		
-			//유효성
-		
-			//서비스
+			String bookCode = req.getParameter("bookCode");
+			String username = null;
+			String contents = req.getParameter("contents");
+			LocalDateTime createAt = LocalDateTime.now();
 			
+			HttpSession session = req.getSession();
+			username = (String)session.getAttribute("username");
+			BookReplyDto dto = new BookReplyDto(-1,bookCode,username,contents,createAt);
+			if(username==null)
+				throw new ServletException("로그인이 필요합니다.");
+			//유효성
+			if(!isValid(dto))
+				;
+			//서비스
+			boolean isAdded=bookService.bookReplyAdd(dto);
 			
 			//뷰 (JSON Data 전달)
-			PrintWriter out = resp.getWriter();
-			out.println("{\"message\":\"success!!!\"}");
+			if(isAdded) {
+				PrintWriter out = resp.getWriter();
+				out.println("{\"message\":\"success!!!\"}");
+			}else {
+				PrintWriter out = resp.getWriter();
+				out.println("{\"message\":\"fail....\"}");
+			}
+			
 			
 			
 			
@@ -50,29 +69,13 @@ public class BookReplyCreateController implements SubController{
 
 	}
 
-	private boolean isValid(BookDto bookDto) {
-		if(bookDto.getBookCode().isEmpty()) {
-			req.setAttribute("bookCode", "BookCode를 입력하세요");
-		}
-		if(bookDto.getBookName().isEmpty()) {
-			req.setAttribute("bookName", "BookName를 입력하세요");
-		}
-		if(bookDto.getPublisher().isEmpty()) {
-			req.setAttribute("publisher", "출판사명을 입력하세요");
-		}
-		if(bookDto.getIsbn().isEmpty()) {
-			req.setAttribute("isbn", "isbn을 입력하세요");
-		}		
-		if(
-				bookDto.getBookCode().isEmpty() || 
-				bookDto.getBookName().isEmpty() ||
-				bookDto.getPublisher().isEmpty() ||
-				bookDto.getIsbn().isEmpty()
-				)
-			return false;
-		
-		return true;		
+	private boolean isValid(BookReplyDto dto) {
+		// TODO Auto-generated method stub
+		return true;
 	}
+
+	
+	
 	
 	// 예외처리함수
 	public void exceptionHandler(Exception e) {

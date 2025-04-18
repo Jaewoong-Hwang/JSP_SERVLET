@@ -10,17 +10,48 @@ console.log('path:',path)
 
 
 replyAddBtn.addEventListener('click',()=>{
-
+	
+	const contents = document.querySelector('.reply-header textarea').value;
 	axios
-		.get(`${path}/book/reply/create`)
-		.then((resp)=>{ console.log(resp); })
-		.catch((error)=>{ console.log(error); })
+		.get(`${path}/book/reply/create?bookCode=${bookCode}&contents=${contents}`)
+		.then((resp)=>{ 
+			console.log(resp); 
+			document.querySelector('.reply-header textarea').value='';
+			createReplyItem();
+			})
+			.catch((error)=>{ console.log(error); })
 		
 	
 	//createReplyItem();
 })
 
 
+function receiveReplyData(){
+	axios
+			.get(`${path}/book/reply/list?bookCode=${bookCode}`)
+			.then((resp)=>{ 
+				
+				//기존 items의 노드제거
+				const itemsEl = documnet.querySelector(".reply-body .imtes");
+				while(itemsEl.firstChild){
+					itemsEl.removeChild(itemsEl.firstChild)
+				}
+				console.log(resp);
+				const data = resp.data;
+				const cnt = data.replyCnt;
+				const replyCntEl=document.querySelector(".reply-cnt")
+				replyCntEl.innerHTML=cnt;
+				 
+				const items = data.replyList;
+				items.forEach(item?=>createReplyItem(item))
+				
+				
+				
+				})
+				.catch((error)=>{ console.log(error); })
+				
+}
+receiveReplyData();
 
 function createReplyItem(){
 	const itemEl = document.createElement('div');
@@ -31,17 +62,18 @@ function createReplyItem(){
 	profileEl.className='profile';
 	const usernameEl = document.createElement('div');
 	usernameEl.className='username';
-	usernameEl.innerHTML='username';
+	usernameEl.innerHTML=item.username;
 	const rightEl = document.createElement('div');
 	rightEl.className='right';
 	
 	const dateEl = document.createElement('div');
 	dateEl.className='date';
-	dateEl.innerHTML='2025-01-01';
+	dateEl.innerHTML=item.createAt;
 	const contentEl = document.createElement('div');
 	contentEl.className='content';
 	
 	const textAreaEl = document.createElement('textarea');
+	textAreaEl.value=item.contents
 	
 	const buttonGroupEl = document.createElement('div');
 	buttonGroupEl.className='button-group';

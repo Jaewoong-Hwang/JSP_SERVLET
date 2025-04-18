@@ -16,6 +16,7 @@ import Controller.book.BookDeleteController;
 import Controller.book.BookListController;
 import Controller.book.BookReadController;
 import Controller.book.BookReplyCreateController;
+import Controller.book.BookReplyListController;
 import Controller.book.BookUpdateController;
 import Controller.user.AdminMainController;
 import Controller.user.ManagerMainController;
@@ -54,7 +55,10 @@ public class FrontController extends HttpServlet {
 			map.put("/book/read", new BookReadController());
 			map.put("/book/update", new BookUpdateController());
 			map.put("/book/delete", new BookDeleteController());
+			
 			map.put("/book/reply/create", new BookReplyCreateController());
+			map.put("/book/reply/list", new BookReplyListController());
+			
 			
 			
 		} catch (Exception e) {

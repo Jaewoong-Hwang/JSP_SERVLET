@@ -6,6 +6,11 @@
 	<!-- link -->
 	<%@include file="/resources/layouts/link.jsp" %>
 	
+	<script>
+	const path='${pageContext.request.contextPath}';
+
+	</script>
+	
 	<!--  -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/book/read.css" />
 	<script src="${pageContext.request.contextPath}/resources/js/book/read.js" defer></script>

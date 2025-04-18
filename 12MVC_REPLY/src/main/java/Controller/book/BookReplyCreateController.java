@@ -34,9 +34,12 @@ public class BookReplyCreateController implements SubController{
 			//서비스
 			
 			
-			//뷰
+			//뷰 (JSON Data 전달)
 			PrintWriter out = resp.getWriter();
 			out.println("{\"message\":\"success!!!\"}");
+			
+			
+			
 			
 		}catch(Exception e) {
 			exceptionHandler(e);

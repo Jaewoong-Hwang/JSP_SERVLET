@@ -2,11 +2,11 @@
  * 
  */
 console.log("read.js..");
-const path='${pageContext.request.contextPath}';
+//const path='${pageContext.request.contextPath}';
 
 
 const replyAddBtn = document.querySelector(".reply-add-btn")
-
+console.log('path:',path)
 
 
 replyAddBtn.addEventListener('click',()=>{
@@ -14,7 +14,7 @@ replyAddBtn.addEventListener('click',()=>{
 	axios
 		.get(`${path}/book/reply/create`)
 		.then((resp)=>{ console.log(resp); })
-		.catch((error)=>{ console.log(resp); })
+		.catch((error)=>{ console.log(error); })
 		
 	
 	//createReplyItem();

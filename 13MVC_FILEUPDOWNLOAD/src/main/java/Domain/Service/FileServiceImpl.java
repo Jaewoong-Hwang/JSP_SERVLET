@@ -4,7 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,5 +65,29 @@ public class FileServiceImpl {
 		}
 
 		return true;
+	}
+
+	public Map<String,List<File>>getFileList() {
+		Map<String,List<File>> map = new LinkedHashMap();
+		String UploadPath = Properties.ROOT_PATH + File.separator // '/' 구분자임
+				+ Properties.UPLOAD_PATH;
+		
+		File dir = new File(UploadPath);
+		if(dir.exists()&&dir.isDirectory()) {
+			
+			File[]folders=dir.listFiles();//폴더찾기
+			//Arrays.stream(folders).forEach(System.out::println); 
+			for(File folder : folders) {  // 폴더
+				File[] list =folder.listFiles();  //폴더 내 파일
+				System.out.println("DIR : " + folder.getName());
+				Arrays.stream(list).forEach(System.out::println); 
+				map.put(folder.getName(), Arrays.stream(list).collect(Collectors.toList()) ); //뱌열을 리스트형으로 바꿈
+				
+			}
+			
+		}
+		
+		
+		return map;
 	}
 }

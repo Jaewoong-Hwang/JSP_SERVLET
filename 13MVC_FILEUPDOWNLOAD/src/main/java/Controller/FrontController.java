@@ -25,6 +25,7 @@ import Controller.user.UserCreateController;
 import Controller.user.UserLoginController;
 import Controller.user.UserLogoutController;
 import Controller.user.UserMainController;
+import file.ListController;
 import file.UploadController;
 
 //@WebServlet("/")
@@ -74,6 +75,7 @@ public class FrontController extends HttpServlet {
 			
 			//FILE
 			map.put("/file/upload", new UploadController());
+			map.put("/file/list", new ListController());
 			
 			
 		} catch (Exception e) {

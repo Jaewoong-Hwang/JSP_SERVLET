@@ -89,7 +89,13 @@ div {
 		<div class="d4"></div>
 		<div class="preview"></div>
 	</div>
+	<!-- axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.8.4/axios.min.js" integrity="sha512-2A1+/TAny5loNGk3RBbk11FwoKXYOMfAK6R7r4CpQH7Luz4pezqEGcfphoNzB7SM4dixUoJsKkBsB6kg+dNE2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
 	<script>
+	
+	const formData = new FormData();
+	
 	 let maxSize = 1024 * 1024 * 1   // 최대 업로드 가능 사이즈 (1Mb)
      function isValid(file)              // 유효성 체크 함수 
      {
@@ -142,6 +148,9 @@ div {
          console.log('drop', e.dataTransfer.files)
 
          const files = e.dataTransfer.files;
+         formData.append("files",files[0]);
+         
+         
          for (let i = 0; i < files.length; i++) {
              console.log('drop', e.dataTransfer.files[i])
              const file = e.dataTransfer.files[i];
@@ -160,7 +169,18 @@ div {
      })
 	
      const imageUploadBtnEl = doucument.querySelector(".image-upload-btn");
-     imageUploadBtbEl.addEventListener('click',()=>{});
+     const path ='${pateContext.request.contextPath}';
+     imageUploadBtnEl.addEventListener('click',()=>{
+		console.log("image-add-btn clicked...");
+		
+		
+		
+		//비동기함수 (axios 사용)
+		axios.post(`/file/upload`,formData,{headers:{'content-Type' :'multipart/form-data'}})
+			 .then(resp=>console.log(resp))
+			 .catch(error=>console.log(error)
+    	 
+     });
 	</script>
 
 </body>

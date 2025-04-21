@@ -169,14 +169,14 @@ div {
      })
 	
      const imageUploadBtnEl = doucument.querySelector(".image-upload-btn");
-     const path ='${pateContext.request.contextPath}';
+     const path ='${pageContext.request.contextPath}';
      imageUploadBtnEl.addEventListener('click',()=>{
 		console.log("image-add-btn clicked...");
 		
 		
 		
 		//비동기함수 (axios 사용)
-		axios.post(`/file/upload`,formData,{headers:{'content-Type' :'multipart/form-data'}})
+		axios.post(path+`/file/upload`,formData,{headers:{'content-Type' :'multipart/form-data'}})
 			 .then(resp=>console.log(resp))
 			 .catch(error=>console.log(error)
     	 

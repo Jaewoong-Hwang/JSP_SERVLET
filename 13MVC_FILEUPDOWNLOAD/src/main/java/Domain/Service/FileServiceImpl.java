@@ -1,7 +1,9 @@
 package Domain.Service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -91,7 +94,7 @@ public class FileServiceImpl {
 		return map;
 	}
 
-	public boolean download(HttpServletRequest req, HttpServletResponse resp) {
+	public boolean download(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		
 		String folder = req.getParameter("folder");
 		String filename = req.getParameter("filename");
@@ -105,6 +108,23 @@ public class FileServiceImpl {
 					+folder
 					+File.separator
 					+filename;
-		return false;
+		
+		response.setHeader("Content-Type","application/octet-stream;charset-utf-8");
+		response.setHeader("Content-Disposition","attachment; filename=" + URLEncoder.encode(filename,"UTF-8").replaceAll("\\+", "")); //공백이나 한글문자가 있으면 오류가 생기기 때문에
+		
+		FileInputStream in = new FileInputStream(downloadPath);
+		ServletOutputStream bout = response.getOutputStream();
+		byte[] buff = new byte[4096];
+		while(true){
+			int data = in.read(buff);
+			if(data==-1)
+				break;
+			bout.write(buff,0,data);
+			bout.flush();
+		}
+		bout.close();
+		in.close();
+		
+		return true;
 	}
 }

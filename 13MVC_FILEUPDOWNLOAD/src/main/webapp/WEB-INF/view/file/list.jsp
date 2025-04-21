@@ -30,8 +30,8 @@
 				{
 	%>
 
-				<a href="javascript:void(0)"><%=file.getName() %></a><br/>
-	
+				<a href="${pageContext.request.contextPath }/file/download?folder=<%=folder%>&filename=<%=file.getName()%>"><%=file.getName() %></a><br/>
+				<!-- 경로정보는 DB 에 넣는 것이 바람직하다.  -->
 	<% 			
 					
 				}

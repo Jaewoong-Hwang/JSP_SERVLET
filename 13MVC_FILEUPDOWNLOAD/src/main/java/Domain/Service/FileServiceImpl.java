@@ -90,4 +90,21 @@ public class FileServiceImpl {
 		
 		return map;
 	}
+
+	public boolean download(HttpServletRequest req, HttpServletResponse resp) {
+		
+		String folder = req.getParameter("folder");
+		String filename = req.getParameter("filename");
+		System.out.println("FILENAME : " + filename+"folder:"+folder);
+		
+		String downloadPath = ""; //ROOTPATH(c:) + / + UPLOAD_PATH + / + FOLDER + / + FILENAME
+		downloadPath=Properties.ROOT_PATH 
+					+File.separator
+					+Properties.UPLOAD_PATH
+					+File.separator
+					+folder
+					+File.separator
+					+filename;
+		return false;
+	}
 }

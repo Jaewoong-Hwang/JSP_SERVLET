@@ -59,6 +59,6 @@ public class FileServiceImpl {
 			//파일 정보는 디렉토리 밖에 꺼내서 관리하는 게 일반적임
 		}
 
-		return false;
+		return true;
 	}
 }

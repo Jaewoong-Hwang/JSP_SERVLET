@@ -37,6 +37,8 @@ public class UploadController implements SubController{
 			boolean isUpload= fileService.upload(req,resp);
 			
 			//뷰
+			if(isUpload)
+				resp.sendRedirect(req.getContextPath()+"/file/upload");
 			
 		
 		}catch(Exception e){

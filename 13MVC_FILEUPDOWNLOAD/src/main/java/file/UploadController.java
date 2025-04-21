@@ -4,9 +4,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
+import Domain.Service.FileServiceImpl;
 
 public class UploadController implements SubController{
 
+	private FileServiceImpl fileService;
+	
+	public UploadController() throws Exception{
+		
+		fileService = FileServiceImpl.getInstance();
+	
+	}
+	
+	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		try {
@@ -24,7 +34,9 @@ public class UploadController implements SubController{
 			//유효성
 			
 			//서비스
+			boolean isUpload= fileService.upload(req,resp);
 			
+			//뷰
 			
 		
 		}catch(Exception e){
